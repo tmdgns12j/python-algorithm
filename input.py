@@ -56,3 +56,53 @@ print(float(a)*float(b))#a*b
 
 a,b = input().split()#love 3 입력
 print(a*int(b))#lovelovelove
+
+a,b=input().split()# 2 10
+c=int(a)**int(b)#거듭제곱
+print(c)#1024
+
+a,b=input().split()#10 3
+c=int(a)//int(b)#나눈 몫
+print(c)# 3
+
+a,b=input().split()
+c=int(a)%int(b) # 나머지
+print(c)
+
+a=float(input())#3.3333333
+print( format(a, ".2f") )# 3.33 소수점 둘째자리까지 출력
+
+a,b=input().split()
+a=float(a)
+b=float(b)
+print(format(a/b,".3f"))
+
+a,b = input().split()
+a=int(a)
+b=int(b)
+print(a+b)
+print(a-b)
+print(a*b)
+print(a//b)
+print(a%b)
+print(format(float(a/b),".2f"))
+
+a,b,c = input().split()
+a=int(a)
+b=int(b)
+c=int(c)
+print(format(float((a+b+c)/3),".2f"))
+
+n=int(input())
+print(bool(n))#0은 false 나머지 true
+
+a=bool(int(input()))
+print(not a)#
+
+a,b=input().split()
+print(bool(int(a)) and bool(int(b)))
+
+a,b=input().split()
+a = bool(int(a))
+b = bool(int(b))
+print((a and (not b)) or ((not a) and b))#nor 01 10 이 참
