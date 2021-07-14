@@ -119,3 +119,85 @@ a='c'
 while a!='q' :
     a=input()
     print(a)
+
+
+#리스트
+n=int(input())
+a=input().split()
+
+for i in range(n) :
+    a[i]=int(a[i])
+
+d=[]
+for i in range(24):
+    d.append(0)
+
+for i in range(n) :
+    d[a[i]]+=1
+
+for i in range(1,24) :
+    print(d[i],end=' ')
+
+
+#
+n=int(input())
+a=input().split()
+for i in range(n) :
+    a[i]=int(a[i])
+
+for i in range(n-1,-1,-1) :
+    print(a[i],end=' ')
+
+
+#최소값 출력
+n=int(input())
+a=input().split()
+f=int(100)
+for i in range(n) :
+    a[i]=int(a[i])
+
+for i in range(n-1) :
+    if a[i]>a[i+1] :
+        a[i+1]=a[i+1]
+    else :
+        a[i+1]=a[i]
+print(a[n-1])
+
+n=int(input())
+
+
+#문자열반복 1 2 abc ->aabbcc
+for i in range(n) :
+    a,b=input().split()
+    a=int(a)
+    sum=""
+    for j in range(len(b)) :
+        sum+=a*b[j]
+    print(sum)
+
+
+# OX점수 OOO->6점
+n=int(input())
+for i in range(n) :
+    a=input()
+    sum=int(0)
+    score=int(1)
+    for j in range(len(a)) :
+        if a[j]=='O' :
+            sum+=score
+            score+=1
+
+        else :
+            score=1
+    print(sum)
+
+
+#예외처리
+while 1 :
+    try :
+        a,b=input().split()
+        a=int(a)
+        b=int(b)
+        print(a+b)
+    except :
+        break
