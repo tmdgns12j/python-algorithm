@@ -201,3 +201,44 @@ while 1 :
         print(a+b)
     except :
         break
+
+#
+a=input().split() #asdf sfd ewe fe ->단어개수 출력
+print(len(a))# 4
+
+#문자열
+word = 'abcd'
+print(word[0]) # a, 3->d, -1 ->d ,-4 ->a
+
+
+#리스트
+list =['a','b','v']
+print(list)#출력 ['a','b','v']
+print(list[0])# a
+
+#letter에 f가 하나씩만 들어감
+f="apple"
+for letter in f :
+    print(letter, end=" ")
+
+#자음 삭제후 출력
+n="aeiouAEIOU"
+a=input('문자열 입력 : ')
+result=""
+for i in a :
+    if i not in n :
+        result+= i
+print(result)
+
+#자음모음 개수 나타내기
+ja="aeiouAEIOU"
+s=input()
+result = ""
+cj=int(0)
+cm=int(0)
+for letter in s :
+    if letter not in ja :
+        cj+=1
+    else:
+        cm+=1
+print(cj,cm)
