@@ -1,2 +1,6 @@
-s=[x**2 for x in range(10)]
-print(s)
+n=int(input())
+a=[]
+for i in range (n) :
+    a.append(int(input()))
+weight=min(a)*n
+print(weight)

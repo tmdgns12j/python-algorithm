@@ -23,4 +23,122 @@ for i in range(n) :  #거스름돈 몇번
         elif change>=1 :
             pe+=1
             change-=1
-    print(qua, da, ni, pe,end=" ") 
+    print(qua, da, ni, pe,end=" ")
+
+#동전 500, 100, 50, 10, 5, 1
+#1000원을 내고 잔돈을받자
+#1. 가격입력
+#2. 동전최소개수 출력
+price = int(input())
+exchange=1000-price
+cnt=int(0)
+while exchange!=0 :
+    if exchange>=500 :
+        exchange-=500
+        cnt+=1
+    elif exchange>=100 :
+        exchange-=100
+        cnt+=1
+    elif exchange>=50 :
+        exchange-=50
+        cnt+=1
+    elif exchange>=10 :
+        exchange-=10
+        cnt+=1
+    elif exchange>=5 :
+        exchange-=5
+        cnt+=1
+    elif exchange>=1 :
+        exchange-=1
+        cnt+=1
+print(cnt)
+
+#상자에 책넣기 백준1434 2시간
+#1. 박스개수, 책개수 입력
+#2. 박스의크기 입력
+#3. 책의 크기 입력
+#박스에 책을넣되 박스의 크기가 책의 크기보다 커야함
+#박스에 책을 최대한 많이넣자
+
+#풀이 : 책을 박스에넣으려하지말고 박스를 책에 맞추자
+#박스크기-=책의크기
+a,b=input().split()
+boxc=int(a)
+bookc=int(b)
+box=input().split()
+book=input().split()
+sum=int(0)
+for i in range(boxc) : #3 3
+    box[i]=int(box[i])
+for j in range(bookc) : #3
+    book[j]=int(book[j])
+
+for i in range(bookc) :
+    for j in range(boxc) :
+        if box[j]>=book[i] :
+            box[j]-=book[i]
+            break
+
+for i in range(boxc) :
+    sum+=box[i]
+print(sum)
+
+
+#백준2810 컵홀더개수
+#S는 솔로석 LL은 커플석
+#컵홀더는 *S*LL*S*LL*LL*이런식임
+#쓸수있는 컵홀더 개수를 찾자
+#풀이 : 컵홀더개수의 비밀을찾자
+#좌석수-커플석(LL)수 or 솔로만있을때 솔로수만
+n=int(input()) #좌석개수 SLLS -> 4
+sit=str(input()) #좌석입력 SLLLLSSLL
+lcnt=int(0) #L갯수
+scnt=int(0) #S갯수
+for i in range(n) : #좌석에 L있나 훑어볼꺼임
+    if sit[i]=='L' : #L있으면 +1
+        lcnt+=1
+    else :           #S있으면 +1
+        scnt+=1
+if lcnt!=0 : #L이 하나라도있으면
+    print(len(sit)+1-int(lcnt/2)) #좌석+1에 커플좌석수/2
+if scnt==len(sit) : #솔로들 수 출력
+    print(scnt)
+
+#2839 최소개수
+#5키로 3키로봉지
+#무게가 주어지면 봉지를 최소로사용하여 봉지개수 구하기
+# 1. 무게입력
+# 2. 봉지갯수 출력
+#풀이 : 3씩 빼면서 5로 나누어떨어지는지 보기
+#거꾸로 생각해보기**
+kg=int(input())
+three=int(0)
+while(kg>=0) :
+    if kg%5==0 or kg==0 :
+        print(int(kg/5)+three)
+        break
+    else :
+        kg-=3
+        three+=1
+if kg<0 :
+    print(-1)
+
+
+#11399
+#최소로 줄 기다리기
+#정렬문제 sort()사용
+# 1. 인원수
+# 2. 인당 걸리는시간 입력
+#  1,2,3 -> 1+ 1+2+ 1+2+3
+# 3. 출력
+n=int(input())#사람수
+arr=input().split()#인당 걸리는시간
+sum=int(0)#시간 초기화
+for i in range(len(arr)) : #시간 입력
+    arr[i]=int(arr[i])
+
+arr.sort() # 정렬
+
+for i in range(len(arr)) : 
+    sum+=arr[i]*((len(arr))-i)
+print(sum)

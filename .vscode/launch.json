@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "pythonPrac_b6b27bd9"
+        },
+        {
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
