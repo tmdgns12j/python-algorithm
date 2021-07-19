@@ -242,3 +242,14 @@ for letter in s :
     else:
         cm+=1
 print(cj,cm)
+
+#백준 2577
+#배열, count(), str()
+a=int(input())
+b=int(input())
+c=int(input())
+multi=a*b*c
+
+for i in range(10) :
+    list_multi=list(str(multi)) #곱한결과를 리스트에 숫자별로 저장하기위해 str로 변환, str()은 각 글자를 배열에 한칸씩 넣어줌
+    print(list_multi.count(str(i)))

@@ -1,4 +1,4 @@
-#append 리스트에 값을 추가할때 사용
+#append() 리스트에 값을 추가할때 사용
 score=[1,2,3,5,8,9]
 for i in range(2) :
     score.append(int(input("입력 : ")))
@@ -57,3 +57,13 @@ print(copy)
 #리스트에 식을 넣을수있음
 s=[x**2 for x in range(10)]
 print(s)
+
+#count() 갯수세기
+a=int(input())
+b=int(input())
+c=int(input())
+multi=a*b*c
+
+for i in range(10) :
+    list_multi=list(str(multi))
+    print(list_multi.count(str(i)))
