@@ -253,3 +253,27 @@ multi=a*b*c
 for i in range(10) :
     list_multi=list(str(multi)) #곱한결과를 리스트에 숫자별로 저장하기위해 str로 변환, str()은 각 글자를 배열에 한칸씩 넣어줌
     print(list_multi.count(str(i)))
+
+#map()
+#공백을 기준으로 구분된 데이터를 입력받을때 사용
+a=list(map(int, input().split()))
+print(a)
+
+a, b, c=map(int,input().split())
+print(a,b,c,end=" ")
+
+#더욱 빠르게 입력받기 (아마 자바의 buffer같은 거인듯)
+#rstrip()는 enter제거
+import sys
+data = sys.stdin.readline().rstrip()
+print(data)
+
+# f-string / 3.6이상부터 가능
+#문자열과 정수를 함께 출력할때 변환하지 않아도 됨
+answer = 7
+print(f"정답은 {answer} 입니다.")
+
+#부등식
+x=15
+if 0<x<20:
+    print("신기하지?")

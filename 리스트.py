@@ -67,3 +67,11 @@ multi=a*b*c
 for i in range(10) :
     list_multi=list(str(multi))
     print(list_multi.count(str(i)))
+
+#map()
+#공백을 기준으로 구분된 데이터를 입력받을때 사용
+a=list(map(int, input().split()))
+print(a)
+
+a, b, c=map(int,input().split())
+print(a,b,c,end=" ")
