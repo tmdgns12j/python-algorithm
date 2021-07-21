@@ -1,4 +1,8 @@
-#부등식
-x=15
-if 0<x<20:
-    print("신기하지?")
+#팩토리얼
+def factorial(i) :
+    if i<=1:
+        print("1")
+        return 1
+    print(i,'*',end=" ")
+    return i*factorial(i-1)
+print(factorial(5))
