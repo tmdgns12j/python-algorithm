@@ -1,3 +1,24 @@
+#큐 기본
+#FIFO
+#덱을 쓰는이유 : 리스트로 큐의 기능을 구현할 수도 있지만 시간복잡도가 덱이 더 좋음
+from collections import deque
+queue = deque()
+queue.append(5)
+queue.append(2)
+queue.append(3)
+queue.append(7)
+print(queue)
+queue.popleft()
+print(queue)
+queue.append(1)
+queue.append(4)
+print(queue)
+queue.popleft()
+print(queue)
+queue.reverse()
+print(queue)
+
+
 #백준 2161 큐
 #제일 위에카드를 버림, 그다음 제일위에 카드를 제일 아래로 옮김
 #버린카드를 순서대로 출력
