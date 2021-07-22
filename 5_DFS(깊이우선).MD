@@ -3,6 +3,7 @@
 
 
 ```
+#스택구조
 def dfs(graph, v, visited) :
     #현재노드를 방문처리
     visited[v]= True
