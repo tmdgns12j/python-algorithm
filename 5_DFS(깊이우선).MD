@@ -1,6 +1,15 @@
 ***
 ![DFS](https://github.com/tmdgns12j/python-algorithm/blob/master/img/DFS%EB%8F%99%EC%9E%91.PNG)
 
+1  
+1->2  
+1->2->7  
+1->2->7->6  
+1->2->7->8  
+1->3  
+1->3->4  
+1->3->5
+
 
 ```
 def dfs(graph, v, visited) :
