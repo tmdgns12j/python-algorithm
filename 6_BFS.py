@@ -39,7 +39,6 @@ bfs(graph, 1, visited)
 
 #미로탈출 최단거리
 from collections import deque
-
 def bfs(x, y):
     queue = deque()
     queue.append((x,y))
@@ -56,7 +55,6 @@ def bfs(x, y):
                 graph[nx][ny] = graph[x][y]+1
                 queue.append((nx,ny))
     return graph[n-1][m-1]   #가장 오른쪽아래까지의 최단거리 반환
-
 n,m = map(int,input().split())
 graph=[]
 for i in range(n):
@@ -65,3 +63,35 @@ for i in range(n):
 dx=[-1,1,0,0]
 dy=[0,0,-1,1]
 print(bfs(0,0))
+
+
+#백준1388
+#나무판자 갯수구하기(모양따라 갯수정해짐)
+# -|-- ->3개필요
+
+#-|--
+#-||-  ->6개 필요
+#1. n,m주어짐(행렬)
+#2. -갯수구하기
+#3. |갯수구하기
+#4. 출력
+n,m=map(int, input().split())
+board=[]
+count=int(0)
+for i in range(n) :  #나무판자 모양 입력
+    board.append(list(input()))
+for i in range(n):   #'-'라 가로 검색
+    pre='_'
+    for j in range(m):
+        if board[i][j]!=pre:
+            pre=board[i][j]
+            if board[i][j]=='-':
+                count+=1
+for i in range(m):  #'|' 세로 검색
+    pre='_'
+    for j in range(n):
+        if board[j][i]!=pre:
+            pre=board[j][i]
+            if board[j][i]=='|':
+                count+=1
+print(count)

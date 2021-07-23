@@ -50,7 +50,7 @@ def dfs(x,y):
         dfs(x+1,y)#하
         dfs(x,y+1)#우
         return True
-    return False
+    return False#else
 
 n,m=map(int, input().split())
 graph=[]
