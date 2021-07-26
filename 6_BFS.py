@@ -136,3 +136,95 @@ def bfs(visited,v,re) :
                 queue.append(i)
     return count
 print(bfs(visited,1,re))
+
+
+#백준 1012
+#배추가 1로 표현되어있는 배추농장에 해충방지 배추흰지렁이를 놓자
+#배추 흰지렁이는 인접한 배추로 옮겨갈수있다
+#유기농을위한 배추흰지렁이의 최소개수를 구하자
+# 1. 테스트케이스 횟수입력
+# 2. 행 열 배추의개수 입력
+# 3. 배추의 위치 입력
+# 4. 출력
+#풀이 : 배열선언후 배추위치를 1로 초기화
+#해당 노드의 상하좌우를 탐색하고 1이있으면 큐에 저장
+#인접한노드 전부 탐색했으면 지렁이+1 
+#모든요소(행렬)에대해서 bfs수행 반복 
+from collections import deque
+def bfs(x,y) :
+    queue=deque()
+    queue.append((x,y))
+    global count
+    count+=1
+    while queue:
+        x,y=queue.popleft()
+        for i in range(4) : #상하좌우 탐색
+            n_x=x+dx[i]
+            n_y=y+dy[i]
+            if n_x<0 or n_x>=n or n_y<0 or n_y>=m: #범위넘을시 무시
+                continue
+            if arr[n_x][n_y]==1:    #상하좌우탐색한 노드가 1이면 0으로 변환후 큐에 추가
+                arr[n_x][n_y]=0
+                queue.append((n_x,n_y))
+        
+
+t=int(input())  #테스트케이스 횟수
+dx=[-1,1,0,0]   #상,하,좌,우
+dy=[0,0,-1,1]
+for k in range(t) :
+    count=int(0)    #지렁이 초기화 
+    m,n,c=map(int,input().split())  #열, 행, 배추개수
+    arr=[[0]*m for i in range(n)]   #2차원배열생성
+    #print(arr)
+    for i in range(c):  #배추위치 1로초기화
+        x,y=map(int,input().split())
+        arr[y][x]=1
+    #print(arr)
+
+    for i in range(n):  #모든 요소에대해서 bfs수행
+        for j in range(m):
+            if arr[i][j]==1:
+                arr[i][j]=0
+                bfs(i,j)
+    print(count)
+
+
+#백준 1260 오류 미해결
+from collections import deque
+def dfs(new,v,visited):
+    visited[v]=True
+    print(v,end=" ")
+    for i in new[v]:
+        if not visited[i]:
+            visited[i]=True
+            dfs(new,i,visited)
+
+
+def bfs(new,v,visitedd):
+    queue=deque([v])
+    visitedd[v]=True
+    while queue:
+        v=queue.popleft()
+        print(v,end=" ")
+        for i in new[v]:
+            if not visitedd[i]:
+                visitedd[i]=True
+                queue.append(i)
+
+n, m, v=map(int,input().split())
+arr=[]
+visited=[False]*(n+1)
+visitedd=[False]*(n+1)
+new=[[]for i in range(n+1)]
+for i in range(m):
+    arr.append(list(map(int,input().split())))
+    arr.sort()
+#print(arr)
+for i in range(m):
+    x,y=arr[i]
+    new[x].append(y)
+    new[y].append(x)
+#print(new)
+dfs(new,v,visited)
+print()
+bfs(new,v,visitedd)
