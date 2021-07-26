@@ -1,31 +1,39 @@
+# #백준 1260 오류 미해결
 # from collections import deque
-# a=int(input())#컴퓨터
-# b=int(input())#쌍
-# n=[list(map(int, input().split())) for i in range(b)]#링크 초기화
-# m=[[] for i in range(a+1)]# 노드 재정렬할 배열->컴퓨터+1
-# print('n= ',n)
-# print('m= ',m)
+# def dfs(new,v,visited):
+#     visited[v]=True
+#     print(v,end=" ")
+#     for i in new[v]:
+#         if not visited[i]:
+#             visited[i]=True
+#             dfs(new,i,visited)
 
-# ch =[0]*(a+1)#감염체크->컴퓨터+1
-# print(ch)
-# for i in range(b): # 노드 재정렬
-#     x,y=n[i]
-#     m[x].append(y)
-#     m[y].append(x)
-# s=1
 
-# def bfs(s):
-#     c=0
-#     dq=deque()
-#     dq.append(s)
-#     ch[s]=1
-#     while len(dq)!=0:
-#         d=dq.popleft()
-#         c+=1
-#         for i in m[d]:
-#             if ch[i]!=1:
-#                 ch[i]=1
-#                 dq.append(i)
-#     print(c-1)
+# def bfs(new,v,visitedd):
+#     queue=deque([v])
+#     visitedd[v]=True
+#     while queue:
+#         v=queue.popleft()
+#         print(v,end=" ")
+#         for i in new[v]:
+#             if not visitedd[i]:
+#                 visitedd[i]=True
+#                 queue.append(i)
 
-# bfs(s)
+# n, m, v=map(int,input().split())
+# arr=[]
+# visited=[False]*(n+1)
+# visitedd=[False]*(n+1)
+# new=[[]for i in range(n+1)]
+# for i in range(m):
+#     arr.append(list(map(int,input().split())))
+#     arr.sort()
+# #print(arr)
+# for i in range(m):
+#     x,y=arr[i]
+#     new[x].append(y)
+#     new[y].append(x)
+# #print(new)
+# dfs(new,v,visited)
+# print()
+# bfs(new,v,visitedd)
