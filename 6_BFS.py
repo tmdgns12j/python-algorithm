@@ -189,7 +189,14 @@ for k in range(t) :
     print(count)
 
 
-#백준 1260 오류 미해결
+#백준 1260
+#DFS와 BFS를 수행한 결과를 출력(방문된점 순서를 출력)
+# 1. 노드개수 N, 간선개수 M, 시작노드 V
+# 2. 출력
+#풀이 : 처음풀때는 3 2 3/ 2 3/ 3 1의 경우를 생각못했음 ->[[],[3],[3],[2,1]]
+#이럴경우 1이 아닌 2를 먼저 탐색하게되어 틀리게됨
+#따라서 배열의 데이터를 정렬해주어야함
+#arr :  [[1, 3], [2, 3]] 가장 중요했던과정임
 from collections import deque
 def dfs(new,v,visited):
     visited[v]=True
@@ -218,13 +225,72 @@ visitedd=[False]*(n+1)
 new=[[]for i in range(n+1)]
 for i in range(m):
     arr.append(list(map(int,input().split())))
-    arr.sort()
-#print(arr)
+    arr[i].sort()# 중요, 입력받은 데이터 정렬
+arr.sort() # arr :  [[2, 3], [1, 3]] 이경우를 1,3 2,3 처럼 다시 정렬
+#print('arr : ',arr)
 for i in range(m):
     x,y=arr[i]
     new[x].append(y)
     new[y].append(x)
-#print(new)
+#print('new : ',new)
 dfs(new,v,visited)
 print()
 bfs(new,v,visitedd)
+
+
+
+#백준 2644
+#촌수구하기
+# 1. 전체사람수 n 
+# 2. 촌수를 계산할 두 사람의 번호
+# 3. 부모 자식간의 관계(링크수) m
+# 4. 부모 자식 x,y / x는 y의 부모번호
+#풀이 : 촌수관계보다는 깊이를 몇번 이동하냐를 구해야함
+#while문에 count를 넣어 큐에 등록할때마다 +1해주는 걸로생각했는데
+#반례가있었음 
+#10
+# 7 6
+# 9
+# 1 2
+# 1 3
+# 1 4
+# 9 1
+# 9 10
+# 3 5
+# 3 6
+# 2 7
+# 2 8
+# 노드를 모두 탐색하면 +1 단 이전노드의 깊이에 +1을 해줘야함
+from collections import deque
+def bfs(new,v,visited):
+    count=int(0)
+    queue=deque([v])
+    visited[v]=count
+    while queue:
+        v=queue.popleft()
+        #count+=1
+        for i in new[v]: 
+            if visited[i]==-1:
+                visited[i]=visited[v]+1 #중요********
+                queue.append(i)
+
+n=int(input())
+a,b=map(int,input().split())
+m=int(input())
+arr=[]
+new=[[]for i in range(n+1)]
+visited=[-1]*(n+1)
+for i in range(m):
+    arr.append(list(map(int,input().split())))
+
+for i in range(m):
+    x,y=arr[i]
+    new[x].append(y)
+    new[y].append(x)
+
+bfs(new,a,visited)
+
+if visited[a]==-1 or visited[b]==-1:
+    print(int(-1))
+else :
+    print(int(visited[b]))

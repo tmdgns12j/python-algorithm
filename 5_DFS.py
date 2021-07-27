@@ -95,7 +95,7 @@ visitedd=[False]*(n+1)
 new=[[]for i in range(n+1)]
 for i in range(m):
     arr.append(list(map(int,input().split())))
-    arr.sort()
+arr.sort()
 #print(arr)
 for i in range(m):
     x,y=arr[i]
