@@ -294,3 +294,46 @@ if visited[a]==-1 or visited[b]==-1:
     print(int(-1))
 else :
     print(int(visited[b]))
+
+
+
+
+#백준 4963
+#섬의 개수찾기
+#땅은 1 바다는 0
+#8방향으로 이동이 가능하다
+# 1. 지도의 너비(w) 높이(h) 입력
+# 2. 지도 입력
+# 3. 너비와 높이가 0 0이면 종료
+from collections import deque
+def bfs(x,y):
+    queue=deque()
+    queue.append((x,y))
+    while queue :
+        x,y=queue.popleft()
+        for i in range(8):
+            nx=x+dx[i]
+            ny=y+dy[i]
+            if nx<0 or nx>=h or ny<0 or ny>=w: #범위넘을시 무시
+                continue
+            if land[nx][ny]==1:
+                land[nx][ny]=0
+                queue.append((nx,ny))
+            
+while (1) :
+    w,h=map(int,input().split())
+    if w==0 or h==0 : break
+    land=[]
+    count=int(0)
+    #  상 하 좌 우 좌상 우상 우하 좌하
+    dx=[-1,1,0,0,-1,-1,1,1]
+    dy=[0,0,-1,1,-1,1,1,-1]
+    for i in range(h):
+        land.append(list(map(int,input().split())))
+    for i in range(h):
+        for j in range(w):
+            if land[i][j]==1:
+                land[i][j]=0
+                count+=1
+                bfs(i,j)
+    print(count)
