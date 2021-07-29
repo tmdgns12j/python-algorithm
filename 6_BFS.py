@@ -337,3 +337,132 @@ while (1) :
                 count+=1
                 bfs(i,j)
     print(count)
+
+
+
+#백준11724
+#방향없는 그래프가 주어졌을때 연결요소의 개수구하기
+# 1. 정점의개수(n) 간선의개수(m) 입력
+# 2. 간선개수만큼 간선입력
+# 3. 출력
+#풀이 : 그냥 기본적인 bfs임 특별한거없음 
+#count해주는 부분만 잘 정해주면 됨
+from collections import deque
+def bfs(visited,v,new):
+    queue=deque([v])
+    visited[v]=True
+    while queue:
+        v=queue.popleft()
+        for i in new[v]:
+            if visited[i]==False:
+                visited[i]=True
+                queue.append(i)
+
+n,m=map(int,input().split())#노드 , 간선
+arr=[]
+new=[[] for i in range(n+1)]
+visited=[False]*(n+1)
+for i in range(m):
+    arr.append(list(map(int,input().split())))
+    arr[i].sort()
+arr.sort()
+#print(arr)
+for i in range(m):
+    x,y=arr[i]
+    new[x].append(y)
+    new[y].append(x)
+#print(new)
+
+count=int(0)
+visited[0]=True
+for i in range(1,n+1):
+    if not visited[i]:
+        bfs(visited,i,new)
+        count+=1
+print(count)
+
+
+#백준 7576
+#토마토 재배하기
+#익은토마토(1)이 주어지며
+#하루가 지날때마다 익은토마토의 상하좌우의 안익은토마토가 익게된다
+#전부 익는데 며칠이 필요할까 / 안익은곳이 한곳이라도 있다면 -1이 출력
+# 1. 가로칸(m), 세로칸(n) 입력
+# 2. 토마토 판 입력/ 익은건1 익지않은건0 빈곳-1
+# 3. 출력
+#풀이 : 1이 여러곳이 주어지는 상황을 첫번째로생각해야함
+#걸리는 날짜는 탐색했을때 전 노드의 +1값
+from collections import deque
+def bfs():
+    while queue:
+        x,y=queue.popleft()
+        for i in range(4):
+            nx=x+dx[i]
+            ny=y+dy[i]
+            if nx<0 or nx>=n or ny<0 or ny>=m:
+                continue
+            if tomato[nx][ny]==0: #토마토가 익은날짜 계산
+                tomato[nx][ny]=tomato[x][y]+1 #전날익은 토마토값에 +1
+                queue.append((nx,ny))
+
+m,n=map(int,input().split())#가로칸, 세로칸
+tomato=[]
+count=int(0)
+dx=[-1,1,0,0]#상하좌우
+dy=[0,0,-1,1]
+for i in range(n):
+    tomato.append(list(map(int,input().split())))
+queue=deque()
+
+for i in range(n): #1이 여러개 주어질때를 해결하기 위함 
+    for j in range(m):
+        if tomato[i][j]==1:
+            queue.append((i,j))
+bfs()
+#print(tomato)
+for i in range(n):
+    for j in range(m):
+        if tomato[i][j]>=count:
+            count=tomato[i][j]
+        if tomato[i][j]==0:
+            print(-1)
+            exit()
+print(count-1)
+
+
+
+#백준7562
+#나이트가 몇번 움직여야 목표로하는 칸에 갈수있을까
+# 1. 테스트케이스(t) 개수 입력
+# 2. 체스판 한변의 길이(l)/ 체스판은 l * l
+# 3. 나이트가 현재있는칸 입력
+# 4. 나이트의 목표칸 입력
+from collections import deque
+def bfs(a,b):
+    queue=deque()
+    queue.append((a,b))
+    while queue:
+        x,y=queue.popleft()
+        for i in range(8):
+            nx=x+dx[i]
+            ny=y+dy[i]
+            if nx<0 or nx>=l or ny<0 or ny>=l:
+                continue
+            if chess[nx][ny]==0:
+                chess[nx][ny]=chess[x][y]+1
+                queue.append((nx,ny))
+
+
+dx=[-2, -2, -1, -1, 1, 1, 2, 2]#나이트가 움직일수 있는 방향
+dy=[-1, 1, -2, 2, -2, 2, -1, 1]
+t=int(input())  #테스트 케이스
+for i in range(t):
+    l=int(input())  #체스판 l
+    chess=[[0]*l for i in range(l)]
+    #print(chess)
+    n,m=map(int,input().split())#시작
+    x,y=map(int,input().split())#끝
+    chess[n][m]=1
+
+    bfs(n,m)
+    print(chess[x][y]-1)
