@@ -466,3 +466,55 @@ for i in range(t):
 
     bfs(n,m)
     print(chess[x][y]-1)
+
+
+#백준2206
+def bfs(arr):
+    # 이동 가능 방법은 좌하우상다.
+    dx = [0, 1, 0, -1]
+    dy = [-1, 0, 1, 0]
+    # (1, 1)부터 시작, 방문해 카운트 1, 벽 통과를 사용 여부
+    queue = deque([(0, 0, 1, True)])
+    while queue:
+        x, y, c, p = queue.popleft()
+        # 가장 먼저 맵의 끝에 도착하는 경우의 수가 가장 빠른 방법이다.
+        if x == n - 1 and y == m - 1:
+            return c
+
+        # 움직일 수 있는 경우의 수인 상하좌우를 모두 움직여준다.
+        for i in range(4):
+            # 움직일 위치
+            tx = x + dx[i]
+            ty = y + dy[i]
+            # 맵의 범위
+            if 0 <= tx < n and 0 <= ty < m:
+                # 움직일 위치가 벽이 아니라면 방문한다.
+                if arr[tx][ty] != 1:
+                    # 이미 벽을 통과한 경우의 수는 해당 경우의 수가 방문 처리한 2를 지날 수 없다.
+                    if not p and arr[tx][ty] == 2:
+                        continue
+                    if p:
+                        # 벽을 통과하지 않은 경우의 수 방문 처리
+                        arr[tx][ty] = 1
+                    else:
+                        # 벽을 통과한 경우의 수의 방문 처리
+                        arr[tx][ty] = 2
+                    # queue에 삽입
+                    queue.append((tx, ty, c + 1, p))
+                
+                # 움직일 위치가 벽이고 벽을 통과하지 않았다면 통과한다.
+                if arr[tx][ty] and p:
+                    queue.append((tx, ty, c + 1, False))
+    return -1
+
+from collections import deque
+
+
+# 행렬 NxM
+n, m = map(int, input().split())
+# 행렬의 모양
+arr = []
+for _ in range(n):
+    arr.append(list(map(int, list(input()))))
+
+print(bfs(arr))

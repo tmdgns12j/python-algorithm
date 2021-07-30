@@ -105,3 +105,40 @@ for i in range(m):
 dfs(new,v,visited)
 print()
 bfs(new,v,visitedd)
+
+
+
+#백준 2606
+#1번컴퓨터를통해 바이러스에 감염된 컴퓨터 수 구하기
+# 1. 컴퓨터 수 입력
+# 2. 연결된 링크(쌍)  수 입력
+# 3. 링크 입력,   1 2 -> 1번컴 2번컴 연결
+# 4. 출력
+#풀이 : 기본 dfs문제 기초잡기좋음
+#연결되어있는 링크들을 n번노드에 연결되어있는 노드배열로 바꾸는게 핵심
+#나머지는 dfs알고리즘과 동일
+com=int(input())#컴퓨터수
+n=int(input())#링크수
+arr=[]#링크 들어갈 배열
+for i in range(n): # 링크 입력(초기화)
+    arr.append(list(map(int,input().split())))
+re=[[]for i in range(com+1)]# n번노드에 인접한 노드묶음으로 재배치할 배열
+                            # 1번노드부터 시작하기위해 컴퓨터수+1 해줌
+count=int(0)
+visited=[False]*(com+1) #방문처리할 배열
+for i in range(n):    #n번노드에 인접한노드를 배열로 재생성
+    x,y=arr[i]
+    re[x].append(y)
+    re[y].append(x)
+#print('re= ',re)
+visited[1]=True
+
+def dfs(visited,v,re):
+    global count
+    for i in re[v]:
+        if not visited[i]:
+            visited[i]=True
+            count+=1
+            dfs(visited,i,re)
+dfs(visited,1,re)
+print(count)
