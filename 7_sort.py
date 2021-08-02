@@ -1,4 +1,4 @@
-#백준2750
+#백준2750, 2751
 #n개의 번호 받아서 정렬하기
 #풀이 : 그냥 sort()씀
 n=int(input())
@@ -47,3 +47,28 @@ for j in range(10001):
     if(num[j]>0):
        for f in range(num[j]):
            print(j)
+
+
+
+#백준 1427
+n=str(input())
+arr=[]
+for i in n:
+    arr.append(int(i))
+#print(arr)
+arr.sort(reverse=True)
+for i in range(len(arr)):
+    print(arr[i],end='')
+
+
+#백준 1026
+n=int(input())
+sum=int(0)
+a=list(map(int,input().split()))
+b=list(map(int,input().split()))
+
+for i in range(n):
+    sum+=max(b)*min(a)
+    b.remove(max(b))
+    a.remove(min(a))
+print(sum)

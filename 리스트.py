@@ -36,7 +36,7 @@ list.pop(1)
 print(list)
 
 #요소삭제하기 remove() 일치하는 값의 요소를 삭제
-list=["0번","1번","2번","3번"]
+list=["0번","1번","1번","2번","3번"]
 list.remove("1번")
 print(list)
 
