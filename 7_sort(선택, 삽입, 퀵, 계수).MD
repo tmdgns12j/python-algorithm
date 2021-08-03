@@ -1,4 +1,5 @@
 ***
+![선택정렬](https://user-images.githubusercontent.com/69194442/127944801-ee39b013-d7c8-48ee-a5c5-f9a878973b88.PNG)
 ```
 #O(N^2)
 array=[7,5,9,0,3,1]
@@ -11,6 +12,7 @@ for i in range(len(array)):
 print(array)
 ```
 
+![선택정렬](https://user-images.githubusercontent.com/69194442/127944815-315e25c9-5643-4b03-9283-10b4281a5c3d.PNG)
 
 ```
 #삽입정렬 O(N)~O(N^2)
@@ -25,13 +27,14 @@ for i in range(len(array)):
 print(array)
 ```
 
+![선택정렬](https://user-images.githubusercontent.com/69194442/127944840-b9e82f0a-6e40-436b-8019-ab2e86c5d717.PNG)
 
 ```
-
 #퀵정렬 O(NlogN)~O(N^2)
 #일반적인 정렬 라이브러리방식
 ```
 
+![계수정렬](https://user-images.githubusercontent.com/69194442/127944844-3cff75cd-4cea-4957-a84c-3c46b831c3aa.PNG)
 
 ```
 #계수정렬 데이터의개수N, 데이터(양수)중 최대값 K일때 O(N+K)
@@ -47,4 +50,9 @@ for i in range(len(count)):
     for j in range(count[i]):
         print(i,end=' ')
 ```
+
+
+
+![정렬비교](https://user-images.githubusercontent.com/69194442/127944851-bc0beeea-79ae-48a9-9df4-640fd681d562.PNG)
+
 ***
