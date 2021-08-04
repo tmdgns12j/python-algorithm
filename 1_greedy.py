@@ -163,3 +163,34 @@ if sum>n : #S를 초과한경우 값을 빼주어야하기때문에 -1
 else :
     print(i)
 
+
+
+#백준 1931 정렬,그리디, lambda
+#n개의 회의 일정이 주어진다 회의실에 최대한 많은 회의를 잡자
+#끝나는시간과 시작시간이 일치할수있음
+# 1. 회의n개 입력
+# 2. 회의 시작시간 끝시간 입력
+# 3. 출력
+#풀이 : 정렬문제에 있긴하지만 그리디에 더 가까워보임
+#핵심은 시작시간으로 정렬후 끝나는시간으로 정렬하는것
+#그래야 가장 많은 회의를 담을수있음
+#난 생각못했음
+import sys
+input = sys.stdin.readline  #숙지할것
+n = int(input())
+arr=[]
+for i in range(n):
+    arr.append(list(map(int,input().split())))
+#print(arr)
+arr.sort()
+arr.sort(key=lambda x:x[1])     #람다식도 숙지
+#print(arr)
+
+start=0
+end=0
+count=0
+for time in arr:
+    if time[0]>=start:
+        start=time[1]
+        count+=1
+print(count)

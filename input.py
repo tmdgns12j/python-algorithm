@@ -106,3 +106,19 @@ a,b=input().split()
 a = bool(int(a))
 b = bool(int(b))
 print((a and (not b)) or ((not a) and b))#nor 01 10 이 참
+
+#-------------------------------------------sys.stdin.readline
+import sys
+n=sys.stdin.readline() 
+print(n)    #개행문자까지 출력됨
+n=sys.stdin.readline().split()
+print(n)    #개행문자가 출려되지않음
+
+input = sys.stdin.readline  #이런 방법도 가능함
+n=input()
+print(n)
+
+arr=[]
+arr.append(sys.stdin.readline())
+arr.append(input())
+print(arr)
