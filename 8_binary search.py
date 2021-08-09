@@ -127,3 +127,86 @@ for i in arrm:
 
 
 
+#백준 2805
+#적어도M미터의 나무를 집에 가져가기 위해서 절단기에 설정할 수 있는 높이의 최댓값을 구하자
+# 1. 나무의수N 가져갈 나무의길이M 입력
+# 2. 나무의 높이 입력
+# 3. 적어도 M미터의 나무를 가져가기 위해서 설정할 수 있는 높이의 최댓값을 출력
+#풀이 : 이분탐색 약간의 응용
+#'적어도' M미터의 나무를 가져가는것이 중요한 풀이다
+import sys
+n, m=map(int,sys.stdin.readline().split())
+tree=list(map(int,sys.stdin.readline().split()))
+#print(tree)
+start=0
+h=0
+end=max(tree)
+while start<=end :
+    sum=0
+    mid=(start+end)//2
+    for i in tree:
+        if mid >= i:
+            sum+=0
+        else :
+            sum+=i-mid
+    #print(sum)
+    if sum<m : 
+        end=mid-1
+    else :          #이부분의 적어도의 부분
+        h=mid
+        start=mid+1
+print(h)
+# import sys
+# n, m=map(int,sys.stdin.readline().split())
+# tree=list(map(int,sys.stdin.readline().split()))
+# #print(tree)
+# start=0
+
+# end=max(tree)
+# while start<=end :
+#     sum=0
+#     mid=(start+end)//2
+#     for i in tree:
+#         if mid >= i:
+#             sum+=0
+#         else :
+#             sum+=i-mid
+#     #print(sum)
+#     if sum<m : 
+#         end=mid-1
+#     elif sum>m : 
+#         start=mid+1
+#     elif sum==m : 
+#         print(mid)
+#         break
+
+
+#백준 1564
+#K개의 랜선으로 모두 N개의 같은 길이의 랜선으로 만들자
+#N의 최대길이는?
+# 1. 이미 가지고있는 랜선 K개수 입력, 필요한 랜선개수N입력
+# 2. K의 길이 입력
+# N 출력
+#풀이 : 떡볶이, 나무토막 문제와 비슷함
+#다른점은 랜선의 최대길이
+import sys, math
+k, n = map(int,sys.stdin.readline().split())
+arr=[]
+for i in range(k):
+    arr.append(int(sys.stdin.readline().rstrip()))
+#print(arr)
+result=0
+start=0
+end=max(arr)
+while start<=end:
+    sum=0
+    mid=math.ceil((start+end)/2)###
+    for i in arr:
+        if i>=mid:      #i>mid => i>=mid
+            sum+=i//mid
+    if sum<n:
+        end=mid-1
+    else : 
+        result=mid
+        start=mid+1
+print(result)
