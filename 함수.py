@@ -41,3 +41,18 @@ family=[('정승훈',25,173),('정안',29,155),('아무개',33,158),('정무개'
 sorted(family, key = lambda x:x[2])
 print(sorted(family, key = lambda x:x[2]))
 print(family)
+
+#Counter() 개수
+#백준 10816
+#Counter()의 위치는 원소의 값이랑 일치한다.
+#10원소의 개수는 N[10]
+import sys
+from collections import Counter
+n = int(sys.stdin.readline().rstrip())
+N=list(map(int,sys.stdin.readline().split()))
+m = int(sys.stdin.readline().rstrip())
+M=list(map(int,sys.stdin.readline().split()))
+cnt=0
+N=Counter(N)
+for i in M:
+    print(N[i])

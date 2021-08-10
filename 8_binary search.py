@@ -210,3 +210,96 @@ while start<=end:
         result=mid
         start=mid+1
 print(result)
+
+
+
+#백준 10815
+#숫자집합N과 M이 주어진다 M의 원소가 N에포함되면 1출력 아니면 0을 출력한다
+# 1. 갯수N입력
+# 2. N의 원소 입력
+# 3. 갯수M입력
+# 4. M의 원소 입력
+# 5. 0또는 1 출ㄹ력
+#풀이 : 쉬움, end범위를 잘 정해줘야함
+import sys
+n = int(sys.stdin.readline().rstrip())
+N=list(map(int,sys.stdin.readline().split()))
+m = int(sys.stdin.readline().rstrip())
+M=list(map(int,sys.stdin.readline().split()))
+
+N.sort()
+# print(N) #5
+# print(M) #8
+
+def binary(start,end,i,N):
+    mid=(start+end)//2
+    if start>end:
+        return 0
+    if i==N[mid]:
+        return 1
+    elif i<N[mid]:
+        end=mid-1
+        return binary(start,end,i,N)
+    else :
+        start=mid+1
+        return binary(start,end,i,N)
+#m이 n에 들어가야함
+for i in M:
+    start=0
+    end=n-1 #배열때문에 -1해줘야함
+    print(binary(start,end,i,N))
+
+
+#백준 10816 ,Counter()
+#숫자집합N과 M이 주어진다 M의 원소가 N에대하여 포함되는 개수와 포함되지않는다면 0을 출력
+# 10
+# 6 3 2 10 10 10 -10 -10 7 3
+# 8
+# 10 9 -5 2 3 4 5 -10
+# 3 0 0 1 2 0 0 2
+#풀이 : 위의문제인 10815와 비슷하게 생각했었지만 쫌 어렵다
+#이분탐색으로 풀었으나 반례를 확인하여 깊은복사를 추가한 후 시간초과가 걸린다
+#결국 Counter()를 사용하였음 숙지하자
+#Counter()의 위치는 원소의 값이랑 일치한다.
+#10원소의 개수는 N[10]
+import sys
+from collections import Counter #임포트 해주어야 가능함 count()보다 더 상위기능임
+n = int(sys.stdin.readline().rstrip())
+N=list(map(int,sys.stdin.readline().split()))
+m = int(sys.stdin.readline().rstrip())
+M=list(map(int,sys.stdin.readline().split()))
+#cnt=0
+N=Counter(N)
+for i in M:
+    print(N[i])
+# import sys
+# n = int(sys.stdin.readline().rstrip())
+# New=list(map(int,sys.stdin.readline().split()))
+# m = int(sys.stdin.readline().rstrip())
+# M=list(map(int,sys.stdin.readline().split()))
+# New.sort()
+
+# def binary(start,end,i,N):
+#     mid=(start+end)//2
+#     global s
+#     if start>end:
+#         return 0
+#     if i==N[mid]:
+#         s+=1
+#         N.remove(i)
+#         end=len(N)-1
+#         return binary(start,end,i,N)
+#     elif i<N[mid]:
+#         end=mid-1
+#         return binary(start,end,i,N)
+#     else :
+#         start=mid+1
+#         return binary(start,end,i,N)
+# #copy=list(score)
+# for i in M:
+#     N=list(New)
+#     s=0
+#     start=0
+#     end=len(N)-1 #배열때문에 -1해줘야함
+#     binary(start,end,i,N)
+#     print(s)
