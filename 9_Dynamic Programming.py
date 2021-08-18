@@ -95,3 +95,59 @@ for j in arr:
         if i>3:
             d[i]=d[i-3]+d[i-2]+d[i-1]
     print(d[j])
+
+
+
+#백준 1003  n>=2 f(n)=(n-1)+f(n-2)
+#피보나치함수를 재귀함수로 처리할때 0과 1이 몇번 출력되는지 구하여라
+# 1. 테스트케이스 갯수 T
+# 2. N입력
+#풀이 : 점화식
+t=int(input())
+for i in range(t):
+    n=int(input())
+    c0=0
+    c1=0
+    d0=[0]*(n+1) #0개수
+    d1=[0]*(n+1) #1개수
+    for i in range(n+1):
+        if i==0:
+            d0[i]=1
+        if i==1:
+            d1[i]=1
+        if i>=2:
+            d0[i]=d0[i-2]+d0[i-1]
+            d1[i]=d1[i-2]+d1[i-1]
+    print(d0[n],d1[n])
+
+
+#백준 11726
+n=int(input())
+d=[0]*(n+1)
+for i in range(1,n+1):
+    if i==1:
+        d[i]=1
+    if i==2:
+        d[i]=2
+    if i>=3:
+        d[i]=d[i-2]+d[i-1]
+print(d[n]%10007)
+
+
+
+#백준 1149  RGB거리
+#집이N개 주어진다 한개의 집에는 RGB중 하나로 칠할수있고 각 색에대한 비용이 주어진다
+#이웃하는 집에 같은색을 연속으로 칠할수없다 RRG=>X
+#N개의 집을 칠할때 드는 최소비용을 구하자
+# 풀이 : 점화식 구하는게 좀 까다로웠음 과정을 표현하는게 중요한듯
+n=int(input())
+arr=[]
+for i in range(n):
+    arr.append(list(map(int,input().split())))
+#print(arr)
+
+for i in range(1,n):
+    arr[i][0]+=min(arr[i-1][1],arr[i-1][2])
+    arr[i][1]+=min(arr[i-1][0],arr[i-1][2])
+    arr[i][2]+=min(arr[i-1][1],arr[i-1][0])
+print(min(arr[n-1][0],arr[n-1][1],arr[n-1][2]))
