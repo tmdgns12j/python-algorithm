@@ -7,6 +7,8 @@
  2. 각각의 계단 점수 입력
  3. 최대값 출력
 
+![stair](https://user-images.githubusercontent.com/69194442/130168354-5a930da2-b3a3-4c22-b9d6-5091e22df7e4.PNG)
+
 ```
 n=int(input())
 stair=[]
