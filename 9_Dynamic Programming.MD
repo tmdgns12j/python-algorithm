@@ -1,3 +1,6 @@
+# DP
+
+
 백준 2579 계단오르기  
 계단은 연속해서 두계단까지 밟을수있음  
 연속된 세계단은 불가능  
@@ -7,8 +10,10 @@
  2. 각각의 계단 점수 입력
  3. 최대값 출력
 
-![stair](https://user-images.githubusercontent.com/69194442/130168354-5a930da2-b3a3-4c22-b9d6-5091e22df7e4.PNG)
-
+![stair](https://user-images.githubusercontent.com/69194442/130168354-5a930da2-b3a3-4c22-b9d6-5091e22df7e4.PNG)  
+점화식을 구하여 푸는게 일반적.  
+수학과 같은 문제는 규칙을 구하면 쉽지만 이런문제는 점화식 구하기 까다로움  
+바텀업 방식이아닌 탑다운 방식을 생각해야할듯  
 ```
 n=int(input())
 stair=[]
