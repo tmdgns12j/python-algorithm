@@ -178,3 +178,54 @@ for i in range(n):
     if i>=2:
         d[i]=max(stair[i]+stair[i-1]+d[i-3],stair[i]+d[i-2])
 print(d[n-1])
+
+
+
+#백준 1932 정수 삼각형
+#층수 n이 주어짐
+#위부터 아래층으로 내려오면서 수를 선택할때 수들의 합이 최대값이 되도록 출력
+#수의 대각선 왼쪽 또는 대각선 오른쪽에 있는 것 중에서만 선택할 수 있다
+# 1. n입력
+# 2. 층마다의 수 입력
+# 3. 최대값 출력
+ # 5
+ # 7
+ # 3 8
+ # 8 1 0
+ # 2 7 4 4
+ # 4 5 2 6 5
+#풀이 : d[i]=arr[i]+d[i-1]
+n=int(input())
+arr=[]
+for i in range(n):
+    arr.append(list(map(int,input().split())))
+
+#print(arr)
+for i in range(1,n): #n=2
+    for j in range(i+1):
+        if j==0:
+            arr[i][j]=arr[i-1][j]+arr[i][j]
+        elif j>0 and j<i:
+            arr[i][j]=max(arr[i-1][j-1]+arr[i][j],arr[i-1][j]+arr[i][j])
+        else :
+            arr[i][j]=arr[i-1][i-1]+arr[i][j]
+print(max(arr[n-1]))
+
+
+
+
+#백준 1912 연속합
+#n개의 정수로 된 수열이 주어짐
+#연속된 몇개의 수를 선택하여 최대값 구하기
+# 1. n입력
+# 2. n개정수 입력
+# 3. 최대값 출력
+#풀이 : 흐름이 끊기는 부분을 잘 생각해야함
+#무조건 적으로 i까지의 최적의해를 이어가려고 하면안됨
+n=int(input())
+arr=list(map(int,input().split()))
+#print(arr)
+d=[0]*(n)
+for i in range(n):
+    d[i]=max(arr[i],d[i-1]+arr[i])
+print(max(d))
