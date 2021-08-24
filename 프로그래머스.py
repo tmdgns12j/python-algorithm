@@ -1,5 +1,4 @@
 #대문자와 소문자가 섞여있는 문자열 s가 주어집니다. s에 'p'의 개수와 'y'의 개수를 비교해 같으면 True, 다르면 False를 return 하는 solution를 완성하세요. 'p', 'y' 모두 하나도 없는 경우는 항상 True를 리턴합니다. 단, 개수를 비교할 때 대문자와 소문자는 구별하지 않습니다.
-
 #예를 들어 s가 "pPoooyY"면 true를 return하고 "Pyy"라면 false를 return합니다
 def solution(s):
     s=str(s)
@@ -69,6 +68,76 @@ for i in range(2):
 
 
 
+#로또의 최고순위와 최저순위
+from collections import Counter
+lottos=[1,2,3,5,12,13]
+win_nums=[11, 10, 4, 6, 7, 9]
+c=0
+def solution(lottos, win_nums):
+    win_nums.sort()
+    start=0
+    end=len(lottos)-1
+    answer=[]
+    max=0
+    min=0
+    def binary(start,end,i):
+        global c
+        mid=(start+end)//2
+        if start>end:
+            return 0
+        if win_nums[mid] == i:
+            c+=1
+        elif win_nums[mid]> i:
+            binary(start,mid-1,i)
+        else:
+            binary(mid+1,end,i)
+    
+    for i in lottos:
+        binary(start,end,i)
+    N=Counter(lottos)
+    if N[0]+c==6:
+        max=1
+    elif N[0]+c==5:
+        max=2
+    elif N[0]+c==4:
+        max=3
+    elif N[0]+c==3:
+        max=4
+    elif N[0]+c==2:
+        max=5
+    else :
+        max=6
+    if c==6:
+        min=1
+    elif c==5:
+        min=2
+    elif c==4:
+        min=3
+    elif c==3:
+        min=4
+    elif c==2:
+        min=5
+    else:
+        min=6
+    answer=[max,min]
+    return answer
+
+print(solution(lottos,win_nums))
+
+
+
+#숫자 문자열과 영단어
+# "one4seveneight" -> 1478
+s="one4seveneight"
+def solution(s):
+    number=['zero','one','two','three','four','five','six','seven','eight','nine']
+    for i in range(10):
+        j=str(i)
+        s=s.replace(number[i],j)
+
+    answer = int(s)
+    return answer
+print(solution(s))
 
 #-----------------------------------------------------Lv2
 
