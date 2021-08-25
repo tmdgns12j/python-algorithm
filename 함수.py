@@ -56,3 +56,12 @@ cnt=0
 N=Counter(N)
 for i in M:
     print(N[i])
+
+
+#zip()
+#프로그래머스 LV1.내적 문제 참조
+def solution(a, b):
+    answer = 0
+    for x, y in zip(a,b):
+        answer += x*y
+    return answer
