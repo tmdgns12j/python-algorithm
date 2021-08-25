@@ -36,6 +36,39 @@ def solution(arr):
     answer = sum(arr)/len(arr)
     return answer
 
+#음양더하기
+#정수와 부호가 각각 주어질때 이들의 합을 구하라
+absolutes=[4,7,12]
+signs=[True,False,True]
+def solution(absolutes, signs):
+    answer=0
+    for i in range(len(absolutes)):
+        if signs[i]==True:
+            pass
+        else:
+            absolutes[i]=-absolutes[i]
+        answer+=absolutes[i]
+    return answer
+print(solution(absolutes,signs))
+
+
+#내적
+#a,b가 주어질때 a[0]*b[0]+..a[n]*b[n]구하여라
+a=[1,2,3,4]
+b=[-3,-1,0,2]
+def solution(a, b):
+    answer = 0
+    for i in range(len(a)):
+        answer+=a[i]*b[i]
+    return answer
+# def solution(a, b):
+#     answer = 0
+#     for x, y in zip(a,b):
+#         answer += x*y
+#     return answer
+print(solution(a,b))
+
+
 #2016년(윤년)
 # 예를 들어 a=5, b=24라면 5월 24일은 화요일이므로 문자열 "TUE"를 반환하세요.
 def solution(a, b):
@@ -46,7 +79,6 @@ def solution(a, b):
         sum+=date[i]
     sum=sum+b
     sum=sum%7
-    
     return day[sum-1]
 
 #신규 아이디 추천
