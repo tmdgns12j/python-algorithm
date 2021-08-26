@@ -81,6 +81,47 @@ def solution(a, b):
     sum=sum%7
     return day[sum-1]
 
+
+
+#소수만들기 combination, 조합
+#숫자nums가 주어질때 숫자 3개의 합이 소수가 되는 경우의 수를 구하여라
+from itertools import combinations
+nums=[1,2,3,4]
+def check(temp):#6
+    for i in range(2,temp):
+        if temp%i==0:
+            return False
+    return True
+def solution(nums):
+    answer = 0
+    combi = list(combinations(nums, 3))
+    for i in range(len(combi)):
+        temp=sum(combi[i])
+        if check(temp):
+            answer+=1
+    return answer
+print(solution(nums))
+
+
+
+#완주하지 못한선수 zip()
+#참가자와 완주자가 주어지고 1명의참가자빼고 모두 완주를한다.
+#미 완주자를 출력하자
+#1명만 남는 특징을 이용해아함
+participant=["marina", "josipa", "nikola", "ana", "filipa"]
+completion=["josipa", "filipa", "marina", "nikola"]
+
+def solution(participant, completion):
+    participant.sort()
+    completion.sort()
+    for a,b in zip(participant, completion):
+        if a != b:
+            return a
+    return participant.pop()
+print(solution(participant,completion))
+
+
+
 #신규 아이디 추천
 import re
 s=".abcdefghijklmn.p"

@@ -65,3 +65,10 @@ def solution(a, b):
     for x, y in zip(a,b):
         answer += x*y
     return answer
+
+#combinations(), 콤비, 조합
+from itertools import combinations
+arr=[1,2,3,4]
+combi=list(combinations(arr,3))
+print(combi)
+#[(1, 2, 3), (1, 2, 4), (1, 3, 4), (2, 3, 4)]
