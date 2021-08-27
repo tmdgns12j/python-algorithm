@@ -69,6 +69,23 @@ def solution(a, b):
 print(solution(a,b))
 
 
+#K번째수
+# array의 2번째부터 5번째까지 자르면 [5, 2, 6, 3]입니다.
+# 1에서 나온 배열을 정렬하면 [2, 3, 5, 6]입니다.
+# 2에서 나온 배열의 3번째 숫자는 5입니다.
+array=[1, 5, 2, 6, 3, 7, 4]
+commands=[[2, 5, 3], [4, 4, 1], [1, 7, 3]]
+def solution(array, commands):
+    answer = []
+    for start,end,k in commands:
+        r=array[start-1:end]
+        r.sort()
+        answer.append(r[k-1])   
+    return answer
+print(solution(array,commands))
+
+
+
 #2016년(윤년)
 # 예를 들어 a=5, b=24라면 5월 24일은 화요일이므로 문자열 "TUE"를 반환하세요.
 def solution(a, b):
@@ -80,6 +97,38 @@ def solution(a, b):
     sum=sum+b
     sum=sum%7
     return day[sum-1]
+
+
+#체육복
+#전체 학생의 수 n, 체육복을 도난당한 학생들의 번호가 담긴 배열 lost, 여벌의 체육복을 가져온 학생들의 번호가 담긴 배열 reserve
+#체육수업을 들을 수 있는 학생의 최댓값을 return
+#도난학생 1이상 여벌체육복학생 1이상, 여벌이있는경우만 빌려줄수있음
+#앞뒤+1로만 빌려줄수있음
+#정렬을 해주면 더 큰 기대값을 얻을수있어서 테케13번 정렬해주면 맞게됨
+n=5
+lost=[2,4]
+reserve=[3,1]
+def solution(n, lost, reserve):
+    lost.sort()
+    reserve.sort()
+    r=len(reserve)
+    copy=list(lost)
+    answer = 0
+    for i in lost:
+        if i in reserve:
+            reserve.remove(i)
+            copy.remove(i)
+    lost=list(copy)
+    for i in lost:#copy
+        if i-1 in reserve:
+            copy.remove(i)
+            reserve.remove(i-1)
+        elif i+1 in reserve:
+            copy.remove(i)
+            reserve.remove(i+1)
+    answer=n-len(copy)
+    return answer
+print(solution(n, lost, reserve))
 
 
 
@@ -119,6 +168,36 @@ def solution(participant, completion):
             return a
     return participant.pop()
 print(solution(participant,completion))
+
+
+#모의고사
+#수포자 3명이 각각arr1,arr2,arr3과 같이 찍을때 가장 많이맞춘 방법을 출력
+#오름차순이고 맞춘 문제수가 같을때 모두 출력
+answers=[5, 5, 5, 1, 4, 1]
+def solution(answers):
+    arr1=[1,2,3,4,5]
+    arr2=[2,1,2,3,2,4,2,5]
+    arr3=[3,3,1,1,2,2,4,4,5,5]
+    c1=0
+    c2=0
+    c3=0
+    answer = []
+    for i in range(len(answers)):
+        if arr1[i%5]==answers[i]:
+            c1+=1
+        if arr2[i%8]==answers[i]:
+            c2+=1
+        if arr3[i%10]==answers[i]:
+            c3+=1
+    result=[c1,c2,c3]
+    print(result)
+    for index, value in enumerate(result):
+        if value==max(result):
+            answer.append(index+1)
+    answer.sort()
+    return answer
+print(solution(answers))
+
 
 
 

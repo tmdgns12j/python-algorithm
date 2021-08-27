@@ -72,3 +72,10 @@ arr=[1,2,3,4]
 combi=list(combinations(arr,3))
 print(combi)
 #[(1, 2, 3), (1, 2, 4), (1, 3, 4), (2, 3, 4)]
+
+#enumerate()
+#배열의 인덱스값과 값을 불러올수있음
+#프로그래머스 LV1 모의고사 참고
+test = [1,2,3] 
+for index, value in enumerate(test): 
+    print(index,value)
