@@ -41,6 +41,7 @@
 # for i in range(m):
 #     print(c[i],end=' ')
 
+#프로그래머스 LV1 실패율
 
 #프로그래머스 LV1 키패드 누르기
 from collections import deque

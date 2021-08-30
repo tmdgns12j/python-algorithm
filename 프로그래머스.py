@@ -132,6 +132,27 @@ print(solution(n, lost, reserve))
 
 
 
+#소수찾기, 에라토스테네스의 체, set()
+#1~n까지의 소수개수를 구하여라
+#n=2이상  1000000이하
+#효율성문제
+#이중포문 O(N^2)이여서 틀렸었음
+n=10
+def solution(n):
+    answer = 0
+    #set()을 쓴 이유는 차집합 해주려고
+    arr=set([i for i in range(3,n+1,2)]) #2의배수를 빼고 생성해줌
+    #print(arr)
+    for i in range(3,n+1,2): #홀수
+        if i in arr:
+            arr-=set([i for i in range(i*2,n+1,i)])#해당 홀수의 다음배수부터 삭제 3이면 6부터 9 12...
+    #print(arr)
+    answer=len(arr)+1#2포함시켜줘야함
+    return answer
+print(solution(n))
+
+
+
 #소수만들기 combination, 조합
 #숫자nums가 주어질때 숫자 3개의 합이 소수가 되는 경우의 수를 구하여라
 from itertools import combinations
@@ -150,6 +171,51 @@ def solution(nums):
             answer+=1
     return answer
 print(solution(nums))
+
+
+
+#실패율 딕셔너리 dict() {}, sorted(), lambda
+# N은 존재하는스테이지, stages는 각각 도전중인 스테이지를 의미
+# 실패율은 스테이지에 도달했으나 아직 클리어하지 못한 플레이어의 수 / 스테이지에 도달한 플레이어 수
+# 실패율이 높은 스테이지를 내림차순으로 출력
+#풀이 : 딕셔너리를 사용하여 쉽게 풀수있음
+#접근방법은 비슷하지만 키와 값을 동시에 초기화를 못했음
+N=5
+stages=[2, 1, 2, 6, 2, 4, 3, 3]
+def solution(N, stages):
+    result={}
+    challenge=len(stages)
+    for stage in range(1,N+1):
+        if challenge !=0:
+            count = stages.count(stage)
+            result[stage]=count/challenge
+            challenge-=count
+        else:
+            result[stage]=0
+    return sorted(result, key=lambda x:result[x],reverse=True)
+# def solution(N, stages):
+#     answer = []
+#     l=len(stages)
+#     temp=0
+#     fail=[0]*(N+2)
+#     for i in stages:
+#         fail[i]+=1
+#     print(fail)
+#     for i in range(1,len(fail)): #8
+#         temp=fail[i]
+#         fail[i]=fail[i]/l
+#         l-=temp
+#     print(fail)
+#     x=dict.fromkeys(fail)
+#     print(x)
+#     c=0
+#     for i in fail:
+#         x[i]=c
+#         c+=1
+#     print(x)
+#     return answer
+print(solution(N,stages))
+
 
 
 

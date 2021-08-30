@@ -42,6 +42,30 @@ sorted(family, key = lambda x:x[2])
 print(sorted(family, key = lambda x:x[2]))
 print(family)
 
+#프로그래머스 LV1 실패율 참고 sorted(), lambda
+N=5
+stages=[2, 1, 2, 6, 2, 4, 3, 3]
+def solution(N, stages):
+    l=len(stages)
+    result={}
+    c=0
+    for i in range(1,N+1):
+        if l!=0:
+            c=stages.count(i)
+            result[i]=c/l
+            l-=c
+        else:
+            result[i]=0
+    print(result)               #그냥 출력시 키와 값 다나옴
+    print(result[1])            #해당하는 값이나옴
+    print(sorted(result))       #정렬시 키값만 출력됨
+    return sorted(result, key=lambda x:result[x],reverse=True)
+print(solution(N,stages))
+# {1: 0.125, 2: 0.42857142857142855, 3: 0.5, 4: 0.5, 5: 0.0}
+# [1, 2, 3, 4, 5]
+# 0.125
+# [3, 4, 2, 1, 5]
+
 #Counter() 개수
 #백준 10816
 #Counter()의 위치는 원소의 값이랑 일치한다.
