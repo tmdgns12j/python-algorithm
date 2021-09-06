@@ -69,6 +69,78 @@ def solution(a, b):
 print(solution(a,b))
 
 
+#같은숫자는 싫어
+#배열이 주어질때 연속적으로나타나는 숫자는 하나만남긴다
+#0~9정수
+arr=[1,1,3,3,0,1,1]
+def solution(arr):
+    answer=[]
+    for i in range(1,len(arr)):
+        if arr[i]==arr[i-1]:
+            arr[i-1]=-1
+    for i in range(len(arr)):
+        if arr[i]!=-1:
+            answer.append(arr[i])   
+    return answer
+print(solution(arr))
+#[1, 3, 0, 1]
+
+#2016년
+#2016년의 달과 일을 입력하면 해당하는 요일 출력
+#2016년은 윤년
+a=5
+b=24
+def solution(a, b):
+    mon=[31,29,31,30,31,30,31,31,30,31,30,31]
+    day=['FRI','SAT','SUN','MON','TUE','WED','THU']
+    sum=0
+    for i in range(a-1): #4
+        sum+=mon[i]
+    d=(sum+b)%7
+    answer=day[d-1]
+    return answer
+print(solution(a,b))
+#TUE
+
+
+#가운데 글자 가져오기
+#문자열이 주어질때 가운데 문자를 출력
+#짝수는 두개
+s="abcde"
+def solution(s):
+    c=len(s)
+    answer=''
+    if c%2!=0:
+        answer=s[len(s)//2]
+    else:
+        answer=s[len(s)//2-1]+s[len(s)//2]
+    return answer
+print(solution(s))
+#c
+
+
+#나누어 떨어지는숫자배열
+#나누어 떨어지는 숫자를 출력
+#없다면 배열에 -1을 담아 출력
+arr=[5, 9, 7, 10]
+divisor=5
+def solution(arr, divisor):
+    answer = []
+    c=0
+    for i in range(len(arr)):
+        if arr[i]%divisor==0:
+            answer.append(arr[i])
+            c=c+1
+    if c==0:
+        answer.append(-1)
+        return answer
+    answer.sort()
+    return answer
+print(solution(arr,divisor))
+#5,10
+
+
+
 #K번째수
 # array의 2번째부터 5번째까지 자르면 [5, 2, 6, 3]입니다.
 # 1에서 나온 배열을 정렬하면 [2, 3, 5, 6]입니다.
@@ -356,64 +428,3 @@ def solution(s):
     answer = int(s)
     return answer
 print(solution(s))
-
-#-----------------------------------------------------Lv2
-
-#2 이상의 n이 입력되었을 때, n번째 피보나치 수를 1234567으로 나눈 나머지를 리턴하는 함수, solution을 완성해 주세요.
-n=int(input())
-first=0
-second=1
-hap=0
-for i in range(n):
-    if n==0 or n==1:
-        print(1)
-        break
-    else :
-        hap=first+second
-        second=first
-        first=hap
-if n!=0 and n!=1:
-    print(hap%1234567)
-
-#str에 나타나는 숫자 중 최소값과 최대값을 찾아 이를 "(최소값) (최대값)"형태의 문자열을 반환하는 함수, solution을 완성하세요.
-#예를들어 s가 "1 2 3 4"라면 "1 4"를 리턴하고, "-1 -2 -3 -4"라면 "-4 -1"을 리턴하면 됩니다.
-def solution(s):
-    s=s.replace('"','')
-    arr=list(map(int,s.split()))
-    answer = str(min(arr))+' '+str(max(arr))
-    return answer
-
-
-
-
-#-----------------------------------------------------LV3
-
-# I 숫자 -> 큐에 숫자를 삽입함
-# D 1 -> 큐에서 최대값 삭제
-# D -1 -> 큐에서 최소값 삭제
-# 큐가 비어있으면 [0,0], 비어있지않으면[최대값,최소값] 출력
-#원소는 “명령어 데이터” 형식으로 주어집니다. 최댓값/최솟값을 삭제하는 연산에서 최댓값/최솟값이 둘 이상인 경우, 하나만 삭제합니다.
-#빈 큐에 데이터를 삭제하라는 연산이 주어질 경우, 해당 연산은 무시합니다.
-operations=["I 7","D -1","D 1","I 5"]
-queue=[]
-answer=[0,0]
-for i in range(len(operations)):
-    c,n=operations[i].split()
-    if c=='I':
-        n=int(n)
-        queue.append(n)
-    elif c=='D':
-        if len(queue)==0:
-            continue
-        n=int(n)
-        if n==1:
-            queue.remove(max(queue))
-        if n==-1:
-            queue.remove(min(queue))
-
-if len(queue)==0:
-    print(answer)
-else:
-    answer[0]=max(queue)
-    answer[1]=min(queue)
-    print(answer)

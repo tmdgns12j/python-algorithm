@@ -127,3 +127,17 @@ def solution(numbers, hand):
     return answer
 
 print(solution(numbers,hand))
+
+#프로그래머스 LV2
+#124나라의 숫자
+#자연수를 1,2,4로만 표현
+#1-1 2-2 3-4 4-11 5-12 6-14 7-21 ...
+n = 10
+def solution(n):
+    answer = ''
+    while n > 0:
+        n -= 1
+        answer = '124'[n%3] + answer
+        n = n // 3
+    return answer
+print(solution(n))
