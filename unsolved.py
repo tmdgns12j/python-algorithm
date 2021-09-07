@@ -141,3 +141,22 @@ def solution(n):
         n = n // 3
     return answer
 print(solution(n))
+
+
+#LV2
+#N개의 최소공배수
+arr=[2,6,8,14]
+def solution(arr):
+    m=max(arr)
+    while True :
+        c=0
+        for i in arr:
+            if m%i==0:
+                c+=1
+            else:
+                break
+        if c==len(arr):
+            break
+        m+=1
+    return m
+print(solution(arr))

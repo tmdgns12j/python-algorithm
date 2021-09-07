@@ -103,3 +103,14 @@ print(combi)
 test = [1,2,3] 
 for index, value in enumerate(test): 
     print(index,value)
+
+
+#gcd()최대공약수
+#LV2 N개의 최소공배수 참조
+from fractions import gcd
+def nlcm(num):      
+    answer = num[0]
+    for n in num:
+        answer = n * answer / gcd(n, answer)
+
+    return answer

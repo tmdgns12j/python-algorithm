@@ -23,8 +23,64 @@ def solution(s):
     return answer
 
 
+#N개의 최소공배수 gcd()
+#N개의 배열이 주어질때 최소공배수를 구하여라
+arr=[2,6,8,14]
+def solution(arr):
+    m=max(arr)
+    while 1:
+        c=0
+        for i in arr:
+            if m%i==0:
+                c+=1
+            else:
+                m+=1
+                break
+        if c==len(arr):
+            break
+    return m
+print(solution(arr))    #168
+
+#다른풀이 gcd()사용
+# from fractions import gcd
+# def nlcm(num):      
+#     answer = num[0]
+#     for n in num:
+#         answer = n * answer / gcd(n, answer)
+#     return answer
 
 
+#땅따먹기 dp
+#4열의 N행 배열이 주어질때 N행까지의 최대값을 구하여라
+#같은열은 연속으로 선택할수없다.
+land=[[1,2,3,5],[5,6,7,8],[4,3,2,1]]
+def solution(land):
+    for i in range(len(land)-1):
+        land[i+1][0]+=max(land[i][1],land[i][2],land[i][3])
+        land[i+1][1]+=max(land[i][0],land[i][2],land[i][3])
+        land[i+1][2]+=max(land[i][0],land[i][1],land[i][3])
+        land[i+1][3]+=max(land[i][0],land[i][1],land[i][2])
+    
+    return max(land[len(land)-1])
+print(solution(land)) #16
+
+
+
+#최솟값 만들기 dp
+#길이가 같은 두개의 배열이 주어진다
+#A,B에서 각각 한개의숫자를 뽑아 곱한다
+#곱한 수의 합이 최소가 되도록 만들자
+A=[1, 4, 2]
+B=[5, 4, 4]
+def solution(A,B):
+    n=len(A)
+    A.sort()
+    B.sort(reverse=True)
+    dp=[0]*n
+    for i in range(n):
+        dp[i]=dp[i-1]+A[i]*B[i]
+    return dp[n-1]
+print(solution(A,B))
 #-----------------------------------------------------LV3
 
 # I 숫자 -> 큐에 숫자를 삽입함
