@@ -81,6 +81,131 @@ def solution(A,B):
         dp[i]=dp[i-1]+A[i]*B[i]
     return dp[n-1]
 print(solution(A,B))
+
+
+#행렬의 곱셈
+#2차원배열 초기화
+#2차원 배열의 곱을 구하여라(항상 계산할수 있게 나옴)
+arr1=[[2, 3, 2], [4, 2, 4], [3, 1, 4]]
+arr2=[[5, 4, 3], [2, 4, 1], [3, 1, 1]]
+print(len(arr2[0]))
+def solution(arr1, arr2):
+    answer = [[0 for i in range(len(arr2[0]))] for i in range (len(arr1))]
+    for i in range(len(arr1)): #3
+        for j in range(len(arr2[0])):#열
+            for k in range(len(arr1[0])):
+                answer[i][j]+=arr1[i][k]*arr2[k][j]
+    return answer
+print(solution(arr1,arr2))
+
+
+#피보나치수 dp
+#n이 주어질때 n번째피보나치수를 구하여라
+n=5
+def solution(n):
+    dp=[0]*(n+1)
+    for i in range(n+1):
+        if i==0:
+            dp[i]=0
+        elif i==1:
+            dp[i]=1
+        else :
+            dp[i]=dp[i-2]+dp[i-1]
+    return dp[n]%1234567
+print(solution(n))
+
+
+
+#JadenCase 문자열 만들기 join()
+#JadenCase란 모든 단어의 첫 문자가 대문자이고, 그 외의 알파벳은 소문자인 문자열입니다.
+#문자열을 JadenCase로 바꾼 뒤 출력
+s="  aa    a"
+def solution(s):
+    answer=""
+    s=s.lower()
+    s=s.split(" ")
+    print(s)
+    for i in range(len(s)):
+        if s[i]!="":
+            s[i]=s[i].replace(s[i][0],s[i][0].upper(),1)
+    answer=" ".join(s)
+    return answer
+print(solution(s))
+#추가 capitalize() 줜나쉽게풀림 ㄱ-
+s="      aa a"
+s=s.lower()
+s=s.split(" ")
+print(s)
+for i in range(len(s)):
+    s[i]=s[i].capitalize()
+print(s)
+answer=" ".join(s)
+print(answer)
+
+
+#숫자의 표현
+#n이 주어질때 n이 연속된 숫자의 합으로 이루어질 수있다.
+#이때 연속된 숫자의 합으로 이루어지는 개수를 구하여라
+#n=9
+#2 3 4
+#4 5
+#9
+#3개
+n=3
+def solution(n):
+    answer = 0
+    c=0
+    for i in range(1,n+1):
+        sum=0
+        for j in range(i,n+1):
+            sum+=j
+            if sum==n:
+                c+=1
+                break
+            elif sum>n:
+                break
+    return c
+print(solution(n))
+
+
+
+#다음 큰 숫자 format() 2진수
+#자연수 n이 주어진다
+#n보다 크고 n을 2진수로 치환했을때 1의 개수가 같은 최소값을 구하여라
+n=78
+def solution(n):
+    bin=format(n,'b')
+    c=bin.count('1')#n의 1개수
+    z=0
+    while c!=z:
+        n+=1
+        bin=format(n,'b')
+        z=bin.count('1')
+    return n
+print(solution(n))
+
+
+#올바른 괄호
+#괄호 형식이 올바르게 열리고 닫혔는지 구분하는 프로그램 완성
+s="(()))("
+def solution(s):
+    c1=0
+    c2=0
+    if s[0]=="(":
+        for i in range(len(s)):
+            if s[i]=="(":
+                c1+=1
+            else :
+                c2+=1
+            if c1<c2:
+                return False
+        if c1==c2:
+            return True
+        else :
+            return False
+    else:
+        return False
+print(solution(s))
 #-----------------------------------------------------LV3
 
 # I 숫자 -> 큐에 숫자를 삽입함

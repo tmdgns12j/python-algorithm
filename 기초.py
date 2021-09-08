@@ -277,3 +277,9 @@ print(f"정답은 {answer} 입니다.")
 x=15
 if 0<x<20:
     print("신기하지?")
+
+#2차원배열 초기화
+#프로그래머스 LV2 행렬의 곱셈 참조
+arr1=[[2, 3, 2], [4, 2, 4], [3, 1, 4]]
+arr2=[[5, 4, 3], [2, 4, 1], [3, 1, 1]]
+answer = [[0 for i in range(len(arr2[0]))] for i in range (len(arr1))]

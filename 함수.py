@@ -114,3 +114,27 @@ def nlcm(num):
         answer = n * answer / gcd(n, answer)
 
     return answer
+
+#capitalize() 각 문자열의 앞글자를 대문자로 바꿔줌
+s="      aa a"
+s=s.lower()
+s=s.split(" ")
+print(s)
+for i in range(len(s)):
+    s[i]=s[i].capitalize()
+print(s)
+answer=" ".join(s)
+print(answer)
+#      Aa A
+
+#title() 각 단어의 앞글자를 대문자로 바꿔줌
+s="aa bb cc Dd rR"
+s=s.title()
+print(s)
+#Aa Bb Cc Dd Rr
+
+#LV2 다음 큰 숫자 참조
+#2진법 치환 format(), 다른진법도 가능
+n=4
+bin=format(n,'b')#b는 binary의미 o, x 등등 가능
+print(bin) #100
