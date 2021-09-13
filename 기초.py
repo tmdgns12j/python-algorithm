@@ -283,3 +283,17 @@ if 0<x<20:
 arr1=[[2, 3, 2], [4, 2, 4], [3, 1, 4]]
 arr2=[[5, 4, 3], [2, 4, 1], [3, 1, 1]]
 answer = [[0 for i in range(len(arr2[0]))] for i in range (len(arr1))]
+
+#for else
+#if else랑은 연결되지않음 if else 처럼 for else가 존재함
+#파이썬만 가능함
+#LV2 스킬트리 참조
+arr=[1,2,3,4,5]
+for i in arr:
+    print(i)
+    if i==4: #i==6
+        print("멈춤")
+        break
+print("난 언제?")
+#1 2 3 4 멈춤
+#1 2 3 4 5 난언제?

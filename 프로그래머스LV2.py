@@ -206,6 +206,26 @@ def solution(s):
     else:
         return False
 print(solution(s))
+
+
+#스킬트리 for else
+#선행스킬이 주어질때 스킬트리에 정해진 순서대로 찍어야한다.
+#가능한 스킬트리의 개수를 출력
+skill="CBD"
+skill_trees=["BACDE", "CBADF", "AECB", "BDA","CBAD","CBD"]
+def solution(skill, skill_trees):
+    answer = 0
+    for i in skill_trees :
+        skills=list(skill)
+        for s in i:
+            if s in skills:
+                if s!= skills.pop(0):
+                    break
+        else:
+            answer+=1
+    return answer
+print(solution(skill, skill_trees))
+#4
 #-----------------------------------------------------LV3
 
 # I 숫자 -> 큐에 숫자를 삽입함
