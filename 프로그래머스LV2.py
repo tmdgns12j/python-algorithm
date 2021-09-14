@@ -226,6 +226,32 @@ def solution(skill, skill_trees):
     return answer
 print(solution(skill, skill_trees))
 #4
+
+
+#구명보트
+#사람들의 몸무게와 구명보트의 최대 kg이 주어진다
+#2명씩밖에 탈수없다
+#필요한구명보트의 최소수를 구하자
+from collections import deque
+people=[40,70, 50, 80, 50]
+limit=220
+def solution(people, limit):
+    c=0
+    people.sort()
+    q=deque(people)
+    while len(q)>=1:
+        if len(q)==1:
+            c+=1
+            break
+        if q[0]+q[-1]<=limit:
+            q.pop()
+            q.popleft()
+            c+=1
+        else:
+            q.pop()
+            c+=1
+    return c
+print(solution(people, limit))
 #-----------------------------------------------------LV3
 
 # I 숫자 -> 큐에 숫자를 삽입함
