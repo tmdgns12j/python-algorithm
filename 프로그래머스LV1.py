@@ -428,3 +428,98 @@ def solution(s):
     answer = int(s)
     return answer
 print(solution(s))
+
+
+
+#크레인 인형뽑기 게임
+#게임(board)이 주어지고 인형의 종류가 숫자로 표현되어있다
+#크레인의 명령(moves)가 주어진다
+#크레인이 명령에 따라 해당하는 인형을 바구니에 옮긴다
+#이웃하는 인형의 종류가 같으면 사라질때 사라진 인형의 개수를 구하여라
+#딱봐도 스택구조 문제임 쉬움
+board=[[0,0,0,0,0],[0,0,1,0,3],[0,2,5,0,1],[4,2,4,4,2],[3,5,1,3,1]]
+moves=[1,5,3,5,1,2,1,4]
+# [0,0,0,0,0]
+# [0,0,1,0,3]
+# [0,2,5,0,1]
+# [4,2,4,4,2]
+# [3,5,1,3,1]
+def solution(board, moves):
+    new=[0]
+    score=0
+    for i in moves:
+        for j in range(len(board)):
+            test1=board[j][i-1]
+            if board[j][i-1]!=0:# 4찾음
+                test2=new[-1:]
+                if test2[-1]==board[j][i-1]: #쌓인거랑 뽑은거랑 같으면
+                    new.pop()
+                    board[j][i-1]=0
+                    score+=2
+                    break
+                else :
+                    new.append(board[j][i-1])
+                    board[j][i-1]=0
+                    break
+    return score
+print(solution(board, moves))
+
+
+
+#없는숫자더하기
+#숫자(numbers)가 주어질때 0~9까지숫자중 없는숫자를 더하여라
+numbers=[1,2,3,4,6,7,8,0]
+def solution(numbers):
+    numbers.sort()
+    arr=[0,1,2,3,4,5,6,7,8,9]
+    sum=0
+    for i in arr:
+        if i not in numbers:
+            sum+=i
+    return sum
+print(solution(numbers))
+
+
+
+#포켓몬
+#여러 종류의 포켓몬(nums)이 주어진다
+#포켓몬은 N/2마리를 가져갈수있을때
+#최대한 여러종류의 포켓몬을 가져가자
+#포켓몬 종류의 수를 구하여라
+nums=[1,2,3,4,5,6]
+def solution(nums):
+    choice=len(nums)//2
+    temp=[]
+    c=0#리턴값
+    nums.sort()
+    for i in nums:
+        if i not in temp:
+            temp.append(i)
+            c+=1
+            choice-=1
+        if choice==0:
+            break
+    return c
+print(solution(nums))
+
+
+
+#약수의 개수와 덧셈
+#left right가 주어진다
+#left에서 right까지 약수의 개수가 짝수면 더하고 홀수면 뺀다
+#이때 합을 구하자
+left=13
+right=17
+def solution(left, right):
+    sum=0
+    for i in range(left,right+1):
+        e=left
+        if e**0.5%1==0:#제곱수면
+            sum-=e
+            left+=1
+        else :
+            sum+=e
+            left+=1
+    return sum
+print(solution(left, right)) #43
+
