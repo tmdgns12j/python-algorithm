@@ -138,3 +138,35 @@ print(s)
 n=4
 bin=format(n,'b')#b는 binary의미 o, x 등등 가능
 print(bin) #100
+
+
+#LV1 3진법뒤집기 참조
+#진법,진수변환 int()
+def solution(n):
+    tmp = ''
+    while n:
+        tmp += str(n % 3)
+        n = n // 3
+
+    answer = int(tmp, 3)#3진법 변환 ********
+    return answer
+print(solution(n))
+
+
+#LV1 비밀지도
+#str.zfill(n) str에 사용 가능하며 왼쪽을 n자리수만큼 0으로 채워줌
+n=6
+arr1=[46, 33, 33 ,22, 31, 50]
+arr2=[27 ,56, 19, 14, 14, 10]
+def solution(n, arr1, arr2):
+    arr=[]
+    num=0
+    for i in range(n):
+        num=arr1[i]|arr2[i]
+        bin=format(num,'b')#str
+        bin=bin.zfill(n)
+        temp=bin.replace('1','#')
+        temp=temp.replace('0',' ')
+        arr.append(temp)
+    return arr
+print(solution(n,arr1,arr2))

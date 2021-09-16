@@ -523,3 +523,136 @@ def solution(left, right):
     return sum
 print(solution(left, right)) #43
 
+
+
+
+#3진법 뒤집기
+#자연수n이 주어질때 3진법으로 변환하고 앞뒤로 뒤집은 후
+#다시 10진법으로 표현하여라
+#진법,진수변환 int()
+n=125
+def solution(n):
+    arr=[]
+    number=""
+    sum=0
+    while n>0:          #3진수로 변환
+        arr.append(n%3)
+        n=n//3
+    number=list(map(str,arr))
+    answer="".join(number)
+    answer=int(answer)
+    answer=str(answer)
+    l=len(answer)
+    answer=int(answer)
+    print(answer)#22111
+    for i in range(1,l+1):# 1,2
+        sum=sum+answer%(10**1)*(3**(i-1))
+        answer=answer//10
+    return sum
+
+#다른풀이
+#진법,진수변환 int()
+def solution(n):
+    tmp = ''
+    while n:
+        tmp += str(n % 3)
+        n = n // 3
+
+    answer = int(tmp, 3)#3진법 변환
+    return answer
+print(solution(n))
+
+
+
+#예산
+#부서별 신청한 지원금(d)과 예산(budget)이 주어진다
+#이때 지원할수있는 부서의수를 구하여라(최대)
+d=[2,2,3,3]
+budget=10
+def solution(d, budget):
+    d.sort() #1 2 3 4 5
+    result=0
+    for i in d:
+        budget-=i
+        if budget<0:
+            break
+        else:
+            result+=1
+    return result
+print(solution(d,budget))
+
+
+
+#비밀지도
+#zfill() str에 사용 가능하며 왼쪽을 0으로 채워줌
+n=6
+arr1=[46, 33, 33 ,22, 31, 50]
+arr2=[27 ,56, 19, 14, 14, 10]
+def solution(n, arr1, arr2):
+    arr=[]
+    num=0
+    for i in range(n):
+        num=arr1[i]|arr2[i]
+        bin=format(num,'b')#str
+        bin=bin.zfill(n)
+        temp=bin.replace('1','#')
+        temp=temp.replace('0',' ')
+        arr.append(temp)
+    return arr
+print(solution(n,arr1,arr2))
+
+
+
+
+#두 개 뽑아서 더하기
+#정수 배열이 주어진다
+#서로다른 위치에있는 두 수를 뽑아 더해서 만들수있는 모든 수를 배열에 오름차순으로 담아 출력
+numbers=[5,0,2,7]
+def solution(numbers):
+    arr=set()
+    for i in range(len(numbers)):
+        for j in range(len(numbers)):
+            if i!=j:
+                temp=numbers[i]+numbers[j]
+                arr.add(temp)
+            else:
+                break
+    arr=list(arr)
+    arr.sort()
+    return arr 
+print(solution(numbers))
+
+
+
+#다트게임
+dartResult="1S*2T*3S"
+def solution(dartResult):
+    dartResult=dartResult.replace('10','N')
+    arr=[]
+    sum=0
+    for i in dartResult:
+        c=0
+        if i.isdigit():
+            i=int(i)
+            arr.append(i)
+        elif i=='N':
+            i=10
+            arr.append(i)
+        elif i=='S':
+            arr[-1]=arr[-1]**1
+        elif i=='D':
+            arr[-1]=arr[-1]**2
+        elif i=='T':
+            arr[-1]=arr[-1]**3
+        elif i=='*':
+            for j in range(len(arr)-1,-1,-1):#2 3
+                arr[j]=arr[j]*2
+                c+=1
+                if c==2:
+                    break
+        elif i=='#':
+            arr[-1]=-arr[-1]
+    for i in arr:
+        sum+=i
+    return sum
+print(solution(dartResult))
