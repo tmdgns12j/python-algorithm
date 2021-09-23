@@ -656,3 +656,22 @@ def solution(dartResult):
         sum+=i
     return sum
 print(solution(dartResult))
+
+
+#부족한 금액 계산하기
+#놀이기구의 가격(price) 소지한금액(money) 타고싶은횟수(count)가 주어진다
+#가격은 n번째 이용한다면 이용료의n배를 받는다
+#3 6 9 12...
+#모자라는 금액을 구하고 모자라지않으면 0을 리턴
+price=3
+money=20
+count=4
+def solution(price, money, count):
+    sum=0
+    for i in range(1,count+1):
+        sum+=price*i
+    result=sum-money
+    if money>=sum:
+        return 0
+    return result
+print(solution(price, money, count))

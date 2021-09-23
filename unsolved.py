@@ -160,3 +160,53 @@ def solution(arr):
         m+=1
     return m
 print(solution(arr))
+
+
+
+
+#Lv1 상호 평가
+scores=[[0,0],[0,0]]
+def solution(scores):
+    arr=[]
+    for i in range(len(scores[0])):
+        ma=max(scores[i])
+        mi=min(scores[i])
+        check1=0
+        check2=0
+        for k in range(len(scores)):
+            if scores[k][i]==ma:
+                check1+=1
+            elif scores[k][i]==mi:
+                check2+=1
+        if check1>=2:
+            pass
+        elif check2>=2:
+            pass
+        elif scores[i][i]==ma:
+            scores[i][i]=0
+        elif scores[i][i]==mi:
+            scores[i][i]=0
+        sum=0
+        c=0
+        for j in range(len(scores)):
+            sum+=scores[j][i]
+            if scores[j][i]==0:
+                c+=1
+        if (len(scores)-c)==0:
+            arr.append('F')
+        else:   
+            avg=sum/(len(scores)-c)
+
+            if avg>=90 :
+                arr.append('A')
+            elif avg>=80 :
+                arr.append('B')
+            elif avg>=70 : 
+                arr.append('C')
+            elif avg>=50 :
+                arr.append('D')
+            else :
+                arr.append('F')
+    answer="".join(arr)
+    return answer
+print(solution(scores))
