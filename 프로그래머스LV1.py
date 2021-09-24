@@ -675,3 +675,108 @@ def solution(price, money, count):
         return 0
     return result
 print(solution(price, money, count))
+
+
+#문자열과 n이 주어질때
+#각 문자열의 n번째 문자로 정렬한다
+#n문자가 같을때는 사전순으로 정렬
+strings=["sun", "bed", "car"]
+n=1
+def solution(strings, n):
+    strings.sort()
+    return sorted(strings, key=lambda x:x[n])
+print(solution(strings,n))
+
+
+
+#문자열 내림차순으로 배치하기
+#주어진 문자열을 내림차순으로 정렬하여라
+#join()
+s="Zbcdefg"
+def solution(s):
+    s=list(s)
+    s.sort(reverse=True)
+    answer="".join(s)
+    return answer
+print(solution(s))
+
+
+#문자열다루기 기본 isdigit(), isnum()
+#문자열의 길이가 4또는6이고 숫자로만 구성되어있는지 확인하는 함수 작성
+def solution(s):
+    if (len(s)==4 or len(s)==6) and s.isdigit():
+        return True
+    else:
+        return False
+
+
+#서울에서 김서방찾기
+#배열이 주어질때 Kim의 위치를 찾아라
+seoul=["Jane", "Kim"]
+def solution(seoul):
+    num=seoul.index('Kim')
+    return"김서방은 %d에 있다" % num
+print(solution(seoul))
+
+
+#수박수박수박수?
+#n이 주어질때 수박패턴을 유지하여 출력
+#n=3 수박수   n=4 수박수박
+n=3
+def solution(n):
+    arr=['수','박']
+    new=[]
+    if n%2==0:
+        return "수박"*(n//2)
+    else:
+        for i in range(n):
+            new.append(arr[i%2])
+        return "".join(new)
+print(solution(n))
+
+
+#문자열을 정수로바꾸기
+s="-1234"
+def solution(s):
+    return int(s)
+print(solution(s))
+
+
+#약수의합
+n=12
+def solution(n):
+    sum=0
+    for i in range(1,n+1):
+        if n%i==0:
+            sum+=i
+    return sum
+print(solution(n))
+
+
+
+#이상한 문자 만들기
+#문자열s가 주어진다
+#단어의 짝수번째 알파벳은 대문자 홀수번째는 소문자로 출력한다
+s="try  h"
+def solution(s):
+    new=[]
+    s=list(s)
+    c=0
+    check=0
+    for i in s:
+        if i==" ":
+            check=0
+            new.append(i)
+        elif check%2==0: #짝수면
+            i=i.upper()
+            s[c]='1'
+            new.append(i)
+            check+=1
+        else:
+            i=i.lower()
+            s[c]='1'
+            new.append(i)
+            check+=1
+        c+=1
+    return "".join(new)
+print(solution(s))

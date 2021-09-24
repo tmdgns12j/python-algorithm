@@ -297,3 +297,22 @@ for i in arr:
 print("난 언제?")
 #1 2 3 4 멈춤
 #1 2 3 4 5 난언제?
+
+
+#문자열출력 %d
+#서울에서 김서방찾기
+#배열이 주어질때 Kim의 위치를 찾아라
+seoul=["Jane", "Kim"]
+def solution(seoul):
+    num=seoul.index('Kim')
+    return"김서방은 %d에 있다" % num
+print(solution(seoul))
+
+
+#문자열다루기 기본 isdigit(), isnum(), isalpha
+#문자열의 길이가 4또는6이고 숫자로만 구성되어있는지 확인하는 함수 작성
+def solution(s):
+    if (len(s)==4 or len(s)==6) and s.isdigit():
+        return True
+    else:
+        return False

@@ -170,3 +170,13 @@ def solution(n, arr1, arr2):
         arr.append(temp)
     return arr
 print(solution(n,arr1,arr2))
+
+
+
+#문자열다루기 기본 isdigit(), isnum()
+#문자열의 길이가 4또는6이고 숫자로만 구성되어있는지 확인하는 함수 작성
+def solution(s):
+    if (len(s)==4 or len(s)==6) and s.isdigit():
+        return True
+    else:
+        return False
