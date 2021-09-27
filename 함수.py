@@ -180,3 +180,17 @@ def solution(s):
         return True
     else:
         return False
+
+
+
+#정수 제곱근 판별
+#sqrt()루트함수, pow() n제곱 함수
+import math
+n=122
+def solution(n):
+    sqrt=math.sqrt(n)
+    if sqrt%1==0:
+        return int(pow(sqrt+1,2))
+    else:
+        return -1
+print(solution(n))

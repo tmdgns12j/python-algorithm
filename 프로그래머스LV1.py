@@ -780,3 +780,163 @@ def solution(s):
         c+=1
     return "".join(new)
 print(solution(s))
+
+
+#자릿수더하기
+N=987
+def solution(N):
+    N=str(N)
+    N=list(N)
+    sum=0
+    for i in N:
+        i=int(i)
+        sum+=i
+    return sum
+print(solution(N))
+
+
+#자연수 뒤집어 배열로 만들기
+n=12345
+def solution(n):
+    n=str(n)
+    n=list(n)
+    new=[]
+    for i in range(len(n)-1,-1,-1):
+        new.append(int(n[i]))
+    return new
+print(solution(n))
+
+
+#정수 내림차순으로 배치하기
+n=12345
+def solution(n):
+    n=str(n)
+    n=list(n)
+    n.sort(reverse=True)
+    s=""
+    for i in n:
+        s+=i
+    return int(s)
+print(solution(n))
+
+
+#정수 제곱근 판별
+#sqrt()루트함수, pow() n제곱 함수
+import math
+n=122
+def solution(n):
+    sqrt=math.sqrt(n)
+    if sqrt%1==0:
+        return int(pow(sqrt+1,2))
+    else:
+        return -1
+print(solution(n))
+
+
+#제일 작은 수 제거하기
+arr=[4,3,2,1]
+def solution(arr):
+    arr.remove(min(arr))
+    if len(arr) == 0 or arr==[10]:
+        arr = [-1]
+    return arr
+print(solution(arr))
+
+
+#최대공약수와 최소공배수
+#gcd()최대공약수
+#lcm()최대공약수 3.9부터 가능하다함
+import math
+n=6
+m=9
+def solution(n, m):
+    if math.gcd(n,m)==1:
+        return [1,n*m]
+    else:
+        return [math.gcd(n,m),n*m//math.gcd(n,m)]
+print(solution(n, m))
+
+
+#콜라츠 추측
+num=626331
+def solution(num):
+    c=0
+    while num!=1:
+        if num%2==0:
+            num=num//2
+        else:
+            num=num*3+1
+        c+=1
+        if c==500:
+            return -1
+    return c
+print(solution(num))
+
+
+#평균 구하기
+arr=[1,2,3,4]
+def solution(arr):
+    sum=0
+    for i in arr:
+        sum+=i
+    avg=sum/len(arr)
+    return avg
+print(solution(arr))
+
+
+#하샤드수
+x=10
+def solution(x):
+    temp=list(str(x))
+    sum=0
+    for i in temp:
+        i=int(i)
+        sum+=i
+    if x%sum==0:
+        return True
+    else:
+        return False
+print(solution(x))
+
+
+#핸드폰 번호 가리기
+phone_number="01033334444"
+def solution(phone_number):
+    phone_number=list(phone_number)
+    for i in range(len(phone_number)-5,-1,-1):
+        phone_number[i]='*'
+    return "".join(phone_number)
+print(solution(phone_number))
+
+
+#행렬의 덧셈
+arr1=[[1,2],[2,3]]
+arr2=[[3,4],[5,6]]
+def solution(arr1, arr2):
+    answer=[[0 for i in range(len(arr1[0]))] for i in range(len(arr1))]
+    for i in range(len(arr1)):
+        for j in range(len(arr1[0])):
+            answer[i][j]=arr1[i][j]+arr2[i][j]
+    return answer
+print(solution(arr1, arr2))
+#다른풀이
+#numpy tolist()
+#그냥하는게 훨~~~~~~~~~씬 빠름 비추
+import numpy as np
+def sumMatrix(A,B):
+    A=np.array(A)
+    B=np.array(B)
+    answer=A+B
+    return answer.tolist()
+
+#x만큼 간격이 있는 n개의 숫자
+x=-4
+n=2
+def solution(x, n):
+    answer=[]
+    temp=0
+    for i in range(1,n+1):
+        temp=x*i
+        answer.append(temp)
+    return answer
+print(solution(x, n))
