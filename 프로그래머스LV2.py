@@ -252,6 +252,76 @@ def solution(people, limit):
             c+=1
     return c
 print(solution(people, limit))
+
+
+
+#기능개발
+#진행도와 진행속도가 주어진다
+#배포는 하루의 끝에 이루어지고 배포는 순차적으로 이루어질때
+#각 배포마다 몇개의 기능이 배포되는지 출력
+#[2,4]
+#완성되는데의 날짜를 계산후 그 특성을 이용해 출력해도 상관없을듯
+from collections import deque
+progresses=[93, 30, 55, 60, 40, 65]
+speeds=    [1, 30, 5, 10, 60, 7]
+def solution(progresses, speeds):
+    answer=[]
+    queue=deque(progresses)
+    squeue=deque(speeds)
+    while queue:
+        check=0
+        for i in range(len(queue)):
+            if queue[i]<100:
+                queue[i]+=squeue[i]
+        for i in range(len(queue)):
+            if queue[0]>=100 :
+                queue.popleft()
+                squeue.popleft()
+                check+=1
+            else:
+                break
+        if check!=0:
+            answer.append(check)
+    return answer
+print(solution(progresses, speeds))
+
+
+#더 맵게, 힙 heap() heapq() heapify(), heappush()
+#음식의 스코빌지수가 주어진다
+#모든 음식의 지수를 K이상으로 만들때 필요한 횟수를 구하여라
+#불가능하면 -1 출력
+#섞은 음식의 지수 = 가장 맵지않은 음식 지수+(두번째로 맵지않은 지수 * 2)
+#우선순위큐 가능하지않을까
+import heapq
+scoville=[1,2]
+K=3
+def solution(scoville, K):
+    heapq.heapify(scoville)#힙으로 변경
+    check=0
+    answer=0
+    for i in scoville:#초기부터 K를 넘을때 처리
+        if i>=K:
+            check+=1
+    if check==len(scoville):
+        return 0
+    check=0
+    while check!=len(scoville):
+        c1=heapq.heappop(scoville)#가장 작은값을 빼줌
+        c2=heapq.heappop(scoville)
+        new=c1+c2*2
+        heapq.heappush(scoville, new)
+        answer+=1
+        for i in scoville:
+            if i>=K:
+                check+=1
+            else:
+                check=0
+                break
+        if check==len(scoville):
+            return answer
+        elif len(scoville)==1:
+            return -1
+print(solution(scoville, K))
 #-----------------------------------------------------LV3
 
 # I 숫자 -> 큐에 숫자를 삽입함
