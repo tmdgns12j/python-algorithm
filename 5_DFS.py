@@ -142,3 +142,28 @@ def dfs(visited,v,re):
             dfs(visited,i,re)
 dfs(visited,1,re)
 print(count)
+
+
+
+#LV2 타겟넘버 recursion 재귀, dfs
+#숫자들이 주어진다
+#이 숫자들을 적절히 더하거나 빼서 타겟넘버를 만들고
+#가능한 방법의 수를 출력하라
+numbers=[1, 1, 1, 1, 1]
+target=3
+answer=0
+def solution(numbers, target):
+    def dfs(i,number,sum):
+        global answer
+        sum+=number
+        if i==len(numbers)-1:
+            if sum==target:
+                answer+=1
+        else:
+            dfs(i+1,numbers[i+1],sum)
+            dfs(i+1,-numbers[i+1],sum)
+    sum=0
+    dfs(0,numbers[0],sum)
+    dfs(0,-numbers[0],sum)
+    return answer
+print(solution(numbers, target))

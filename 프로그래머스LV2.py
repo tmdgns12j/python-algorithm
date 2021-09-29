@@ -322,6 +322,53 @@ def solution(scoville, K):
         elif len(scoville)==1:
             return -1
 print(solution(scoville, K))
+
+
+
+#타겟넘버 recursion 재귀, dfs
+#숫자들이 주어진다
+#이 숫자들을 적절히 더하거나 빼서 타겟넘버를 만들고
+#가능한 방법의 수를 출력하라
+numbers=[1, 1, 1, 1, 1]
+target=3
+answer=0
+def solution(numbers, target):
+    def dfs(i,number,sum):
+        global answer
+        sum+=number
+        if i==len(numbers)-1:
+            if sum==target:
+                answer+=1
+        else:
+            dfs(i+1,numbers[i+1],sum)
+            dfs(i+1,-numbers[i+1],sum)
+    sum=0
+    dfs(0,numbers[0],sum)
+    dfs(0,-numbers[0],sum)
+    return answer
+print(solution(numbers, target))
+
+
+#짝지어 제거하기 큐 deque queue
+#문자열이 주어질때 연속하는 두개의문자를 제거한다
+#전부다 지워지면 1출력 그렇지않으면 0출력
+from collections import deque
+s="baabaa"
+def solution(s):
+    queue=deque()
+    queue.append(s[0])
+    for i in range(1,len(s)):
+        queue.append(s[i])
+        if len(queue)<2:
+            pass
+        elif queue[-1]==queue[-2]:
+            queue.pop()
+            queue.pop()
+    if len(queue)==0:
+        return 1
+    else:
+        return 0
+print(solution(s))
 #-----------------------------------------------------LV3
 
 # I 숫자 -> 큐에 숫자를 삽입함

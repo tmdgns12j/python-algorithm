@@ -70,3 +70,25 @@ for i in range(n) :
         print(str(temp[i])+'>')
     else :
         print(temp[i],end=", ")
+
+
+#LV2짝지어 제거하기 큐 deque queue
+#문자열이 주어질때 연속하는 두개의문자를 제거한다
+#전부다 지워지면 1출력 그렇지않으면 0출력
+from collections import deque
+s="baabaa"
+def solution(s):
+    queue=deque()
+    queue.append(s[0])
+    for i in range(1,len(s)):
+        queue.append(s[i])
+        if len(queue)<2:
+            pass
+        elif queue[-1]==queue[-2]:
+            queue.pop()
+            queue.pop()
+    if len(queue)==0:
+        return 1
+    else:
+        return 0
+print(solution(s))
