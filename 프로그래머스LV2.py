@@ -369,6 +369,75 @@ def solution(s):
     else:
         return 0
 print(solution(s))
+
+
+
+#가장 큰 수 lambda 람다식
+#수가 주어질때 숫자를 조합하여 가장 큰 수를 만들어라
+#풀이 : numbers원소는 1000이하, 문자열비교 사용
+#문자열 비교연산의 경우엔 첫번째 인덱스인 666[0]인 6과 101010[0]인 1과 222[0]인 2를 ascii숫자로 바꿔서 비교합니다. 물론 같으면, 다음 인덱스도 비교합니다. 비교한 결과 [6, 2, 10]의 순으로 정렬됩니다.
+numbers=[40,404]
+def solution(numbers):
+    new=[]
+    if numbers.count(0)==len(numbers):
+        return str(0)
+    numbers=list(map(str,numbers))
+    new=sorted(numbers,key=lambda x:x*3,reverse=True)#1000이하라 자리수 맞춰줌666 616161, 아스키코드로 차례대로 비교
+    return "".join(new)
+print(solution(numbers))
+#실패한풀이 dict()사용
+# def solution(numbers):
+#     numbers.sort()
+#     print(numbers)
+#     arr={}
+#     new=[]
+#     for i in numbers:
+#         arr[i]=i//(10**(len(str(i))-1))
+#     arr=sorted(arr, key=lambda x:arr[x],reverse=True)
+#     for i in arr:
+#         i=str(i)
+#         new.append(i)
+#     return "".join(new)
+# print(solution(numbers))
+
+
+#프린터
+#문서의 중요도가 순서대로 담긴배열(priority)이 주어진다
+#숫자가 클수록 중요함
+#location은 인쇠를 요청한 문서의 위치
+#location이 몇번째로 인쇄되는지 출력
+from collections import deque
+priorities=[1, 1, 9, 1, 1, 1]
+location=0
+def solution(priorities, location):
+    queue=deque(priorities)
+    arr=[i for i in range(len(priorities))]
+    arr=deque(arr)
+    count=0
+    while queue:
+        m=max(queue)
+        temp1=queue.popleft()
+        temp2=arr.popleft()
+        if temp1==m:
+            count+=1
+            if temp2==location:
+                return count
+        else:
+            queue.append(temp1)
+            arr.append(temp2)
+print(solution(priorities, location)
+#다른풀이 any()
+# def solution(priorities, location):
+#     queue =  [(i,p) for i,p in enumerate(priorities)]
+#     answer = 0
+#     while True:
+#         cur = queue.pop(0)
+#         if any(cur[1] < q[1] for q in queue):
+#             queue.append(cur)
+#         else:
+#             answer += 1
+#             if cur[0] == location:
+#                 return answer
 #-----------------------------------------------------LV3
 
 # I 숫자 -> 큐에 숫자를 삽입함
