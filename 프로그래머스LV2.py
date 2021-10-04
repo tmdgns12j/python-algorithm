@@ -469,6 +469,75 @@ def solution(numbers):
                 break
     return answer
 print(solution(numbers))
+
+
+#주식가격
+#초 단위로 기록된 주식가격이 주어진다
+#가격이 떨어지지않은기간이 몇초인지 구하자
+prices=[1,2,3,2,3]
+def solution(prices):
+    dp=[0]*len(prices)
+    for i in range(len(prices)):
+        for j in range(i,len(prices)-1):
+            if prices[i]<=prices[j]:
+                dp[i]+=1
+            else:
+                break
+    return dp
+print(solution(prices))
+
+
+#오픈채팅방 dict()
+#들어오고 나간 사람을 바뀐이름으로 화면에 출력
+#풀이 : 아이디에 해당하는 닉네임을 저장한뒤 그걸 가져옴
+record=["Enter uid1234 Muzi", "Enter uid4567 Prodo","Leave uid1234","Enter uid1234 Prodo","Change uid4567 Ryan"]
+def solution(record):
+    answer=[]
+    db=dict()
+    for i in range(len(record)):
+        record[i]=record[i].split()
+        if record[i][0]=="Leave":
+            continue
+        db[record[i][1]]=record[i][2]
+    for i in range(len(record)):
+        if record[i][0]=="Enter":
+            answer.append("%s님이 들어왔습니다." %db[record[i][1]])
+        elif record[i][0]=="Leave":
+            answer.append("%s님이 나갔습니다." %db[record[i][1]])
+    return answer
+print(solution(record))
+
+#첫 풀이 : 아이디에 해당하는 닉네임을 전부 찾아 바꾸고 출력함
+# 굳이 바꿔줄 필요가 없었음(시간초과)
+record=["Enter uid1234 Muzi", "Enter uid4567 Prodo","Leave uid1234","Enter uid1234 Prodo","Change uid4567 Ryan"]
+def solution(record):
+    answer=[]
+    for i in range(len(record)):
+        record[i]=record[i].split()
+        if "Leave"==record[i][0]:
+            record[i].append('0')
+    for i in range(len(record)-1,-1,-1):
+        id=record[i][1]
+        name=record[i][2]
+        if "Change"==record[i][0]:
+            for j in range(len(record)):
+                if record[j][1]==id:
+                    record[j][2]=name
+                if record[j][0]=="Change":
+                    record[j][0]='0'
+        elif "Enter"==record[i][0]:
+            for j in range(len(record)):
+                if record[j][1]==id:
+                    record[j][2]=name
+    for a,b,c in record:
+        if a=="Enter":
+            answer.append("%s님이 들어왔습니다." %c)
+        elif a=="Leave":
+            answer.append("%s님이 나갔습니다." %c)
+    return answer
+print(solution(record))
+
+
 #-----------------------------------------------------LV3
 
 # I 숫자 -> 큐에 숫자를 삽입함

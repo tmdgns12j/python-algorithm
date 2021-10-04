@@ -1,29 +1,18 @@
-#소수찾기 set() permutation() 조합 경우의수
-#에라토스테네스의 체 참고
-#한자리 숫자가 적힌 종이조각들이 들어있다
-#종이를 붙여 소수를 몇개 만들수있는지 출력
-from itertools import permutations
-numbers="17"
-def solution(numbers):
-    new=set()
+#오픈채팅방 dict()
+#들어오고 나간 사람을 바뀐이름으로 화면에 출력
+record=["Enter uid1234 Muzi", "Enter uid4567 Prodo","Leave uid1234","Enter uid1234 Prodo","Change uid4567 Ryan"]
+def solution(record):
     answer=[]
-    numbers=list(numbers)
-    for i in numbers:
-        new.add(int(i))
-    for i in range(2,len(numbers)+1):
-        per=list(permutations(numbers,i))
-        for i in per:
-            i=int("".join(i))
-            new.add(i)
-    if 0 in new:
-        new.remove(0)
-    if 1 in new:
-        new.remove(1)
-    answer=len(new)
-    for i in new:
-        for j in range(2,i//2+1):
-            if i%j==0:
-                answer-=1
-                break
+    db=dict()
+    for i in range(len(record)):
+        record[i]=record[i].split()
+        if record[i][0]=="Leave":
+            continue
+        db[record[i][1]]=record[i][2]
+    for i in range(len(record)):
+        if record[i][0]=="Enter":
+            answer.append("%s님이 들어왔습니다." %db[record[i][1]])
+        elif record[i][0]=="Leave":
+            answer.append("%s님이 나갔습니다." %db[record[i][1]])
     return answer
-print(solution(numbers))
+print(solution(record))
