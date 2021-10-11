@@ -538,6 +538,75 @@ def solution(record):
 print(solution(record))
 
 
+
+#수식 최대화 abs() isdigit() eval()(문자열을 수식으로 계산해줌) permutation()
+#풀이 : 너무복잡했음
+# 1. 숫자와 부호를 두개의 배열로 나눔
+# 2. 등호의 경우의수 리스트로 생성(permutation)
+# 3. 3중for 돌려주면서 결과값 dp에 저장
+
+from itertools import permutations
+expression="100-200*300-500+20"
+def solution(expression):
+    cal=[]
+    num=expression
+    for i in range(len(expression)):
+        if expression[i].isdigit():
+            continue
+        else:
+            cal.append(expression[i])
+            num=num.replace(expression[i],' ')
+    num=num.split()
+    # print(num)
+    # print(cal)
+    new=['-','+','*']
+    new=list(permutations(new,3))
+    dp=[0]*len(new)
+    # print(new)
+    for i in range(len(new)):
+        # print('dp=',dp)
+        copynum=list(num)
+        copycal=list(cal)
+        for j in range(len(new[0])):
+            k=0
+            while 1:# for j in range(len(cal)):
+                if k>=len(copycal):
+                    break
+                if new[i][j]==copycal[k]:
+                    copynum[k]=str(eval(copynum[k]+copycal[k]+copynum[k+1]))
+                    copynum.pop(k+1)
+                    copycal.pop(copycal.index(copycal[k]))
+                    # print(copynum)
+                    dp[i]=abs(int(copynum[k]))
+                    k=0
+                    continue
+                k+=1
+    return max(dp)
+print(solution(expression))
+
+
+# H-Index
+#논문 n편 중, h번 이상 인용된 논문이 h편 이상이고 나머지 논문이 h번 이하 인용되었다면 h의 최댓값이 이 과학자의 H-Index
+#정렬보다는 greedy에 가까운듯..
+# 풀이 : h번 이상 인용된 논문이 h편 이상만 잘 짜면됨
+citations=[1,4]
+def solution(citations):
+    citations.sort() #최적화를 위한 정렬
+    answer=0
+    for i in range(max(citations)+1): #논문이 인용된 횟수의 최대값
+        count=0
+        for j in citations:
+            if j>=i: # j번 인용된 논문이 i번보다 클때
+                count+=1
+        if count>=i: # i번이상 인용된 논문이 i편이상일때
+            answer=i
+    return answer
+print(solution(citations))
+#다른풀이 이해불가;
+def solution(citations):
+    citations.sort(reverse=True)
+    answer = max(map(min, enumerate(citations, start=1)))
+    return answer
 #-----------------------------------------------------LV3
 
 # I 숫자 -> 큐에 숫자를 삽입함
