@@ -607,6 +607,94 @@ def solution(citations):
     citations.sort(reverse=True)
     answer = max(map(min, enumerate(citations, start=1)))
     return answer
+
+
+#못품X
+#가장 큰 정사각형 찾기
+#dp(i,j까지의 정사각형 최대 길이)
+#풀이 : 1,1부터 왼쪽, 위쪽, 좌상, 을 확인
+#모두 1이면 변의길이를 i,j에 +1해준다
+board=[[0,1,1,1],[1,1,1,1],[1,1,1,1],[0,0,1,0]]
+def solution(board):
+    answer=board[0][0]
+    for i in range(1,len(board)):
+        for j in range(1,len(board[0])):
+            if board[i][j]==1:
+                board[i][j]=min(board[i-1][j-1],board[i-1][j],board[i][j-1])+1
+                answer=max(answer,board[i][j])
+    return answer**2
+print(solution(board))
+
+
+
+#큰 수 만들기
+#number이 주어질때 k개의 숫자를 지워 최대값을 만들지
+#풀이 : 9999인 경우를 따로 처리해주는 생각을 해야함
+#처음에는 number에서 사용한건0으로 바꾸었지만 시간초과
+#사용한 데이터는 꼭 삭제해야 시간초과가 걸리자않음
+number="4177252841"
+k=4
+def solution(number, k):
+    l=len(number)
+    answer=""
+    start=0
+    finish=k+1
+    for i in range(l-k):
+        new=number[0:finish]
+        if '9' in new:
+            answer+='9'
+            start=number.index('9')+1
+        else:
+            m=max(new)
+            answer+=m
+            start=number.index(m)+1
+        number=number.replace(number[0:start],'',1)
+        finish=finish-start+1
+    return answer
+print(solution(number, k))
+# number="1231234"
+# k=3
+# def solution(number, k):
+#     l=len(number)
+#     answer=""
+#     start=0
+#     s=0
+#     for i in range(l-k):
+#         new=number[start:k+1+i]
+#         if '9' in new:
+#             answer+='9'
+#             start=number.index('9')+1
+#         else:
+#             m=max(new)
+#             answer+=m
+#             start=number.index(m)+1
+#         number=number.replace(number[s:start],'0'*(start-s),1)
+#         s=start
+#     return answer
+# print(solution(number, k))
+
+
+
+#카펫 약수구하기, 제곱근구하기 sqrt()
+#brown과 yellow(중앙)의 개수가 주어질때 카펫의 가로세로를 구하여라
+#그리디같음
+#규칙만 찾아주면됨
+import math
+brown=8
+yellow=1
+def solution(brown, yellow):
+    h=0
+    arr=[]#yellow의 약수들어갈곳
+    sqrt=int(math.sqrt(yellow))
+    for i in range(1,sqrt+1): #약수구하기
+        if yellow%i==0:
+            arr.append(yellow//i)
+    print(arr)
+    for i in arr: #핵심
+        if(brown+yellow)%(i+2)==0: #너비%가로==0 이면 세로를 구할수있음
+            h=(brown+yellow)//(i+2)
+    return [(brown+yellow)//h,h]
+print(solution(brown, yellow))
 #-----------------------------------------------------LV3
 
 # I 숫자 -> 큐에 숫자를 삽입함
