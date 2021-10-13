@@ -695,6 +695,40 @@ def solution(brown, yellow):
             h=(brown+yellow)//(i+2)
     return [(brown+yellow)//h,h]
 print(solution(brown, yellow))
+
+
+
+#다리를 지나는 트럭
+#다리의 길이, 다리가 지탱가능한 무게, 트럭무게 주어짐
+#이때 모든 트럭이 건너는 초를 구하자
+#풀이 : 해당 트럭의 위치를 저장해줄 배열을 생성해준다
+#처음에 이걸 dict()로 해주었는데 당연히 중복이 가능해야한다는걸 빼먹었다..
+from collections import deque
+bridge_length=100
+weight=100
+truck_weights=[10,10,10,10,10,10,10,10,10,10]
+def solution(bridge_length, weight, truck_weights):
+    bridge=deque()#다리에 있는 트럭
+    l=len(truck_weights)
+    new=[0]*l#각 트럭의 위치배열
+    c=0#트럭이 빠져나온 대수 체크용
+    answer=0
+    while c!=l:#트럭 다빠져 나오면 멈춤
+        if truck_weights: #다리로 옮길게 있을때
+            if sum(bridge)+truck_weights[0]<=weight:
+                bridge.append(truck_weights[0]) #앞에껄 다리로 옮김
+                truck_weights.pop(0)#트럭 다리로감(트럭삭제)
+        else:
+            pass
+        for i in range(len(bridge)):#다리에있는거 이동
+            new[i]+=1
+        answer+=1# 1초 증가
+        if new[0]==bridge_length:
+            new.pop(0)
+            bridge.popleft()
+            c+=1
+    return answer+1
+print(solution(bridge_length, weight, truck_weights))
 #-----------------------------------------------------LV3
 
 # I 숫자 -> 큐에 숫자를 삽입함
