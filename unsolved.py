@@ -210,3 +210,21 @@ def solution(scores):
     answer="".join(arr)
     return answer
 print(solution(scores))
+
+
+#LV2조이스틱
+name="JAAAAN"
+def solution(name):
+    answer=0
+    c=0
+    idx=[0,0]
+    start="A"*len(name)
+    for i in range(len(start)):
+        if ord(name[i])-65<90-ord(name[i]):
+            answer=answer+ord(name[i])-65
+        else:
+            answer=answer+91-ord(name[i])
+        if i!=len(name)-1:#마지막에는 옆으로 못감
+            answer+=1
+    return answer
+print(solution(name))
