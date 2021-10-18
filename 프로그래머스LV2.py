@@ -729,6 +729,7 @@ def solution(bridge_length, weight, truck_weights):
             c+=1
     return answer+1
 print(solution(bridge_length, weight, truck_weights))
+
 #-----------------------------------------------------LV3
 
 # I 숫자 -> 큐에 숫자를 삽입함
