@@ -1,20 +1,20 @@
-s="ababccccc"
+s="aaccc"
 def solution(s):
-    start=0
-    c=1
-    temp=""
-    line=""
-    for i in range(1,len(s)//2+1):
-        for j in range(0,len(s),i):
-            if temp==s[start:i]:
+    
+    for i in range(1,len(s)//2+1):#한번에 탐색범위
+        line=""
+        c=0
+        temp=s[0:i]
+        for j in range(0,len(s),i):#문자열 
+            if temp==s[j:j+i]:
                 c+=1
             else:
                 if c==1:
                     line+=temp
                 else:
                     line=line+str(c)+temp
+                    temp=s[j:j+i]
                 c=1
-            temp=s[start:i]
-            start=i
-
+            if len(s)-j<=i:
+                 line=line+str(c)+temp
 print(solution(s))
