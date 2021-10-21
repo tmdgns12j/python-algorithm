@@ -1,20 +1,25 @@
-s="aaccc"
-def solution(s):
-    
-    for i in range(1,len(s)//2+1):#한번에 탐색범위
-        line=""
-        c=0
-        temp=s[0:i]
-        for j in range(0,len(s),i):#문자열 
-            if temp==s[j:j+i]:
-                c+=1
-            else:
-                if c==1:
-                    line+=temp
-                else:
-                    line=line+str(c)+temp
-                    temp=s[j:j+i]
-                c=1
-            if len(s)-j<=i:
-                 line=line+str(c)+temp
-print(solution(s))
+#백준 1541
+s=input()
+cal=[]
+for i in range(len(s)):
+    if s[i].isdigit():
+        continue
+    else:
+        cal.append(s[i])
+        s=s.replace(s[i],' ',1)
+s=s.split()
+for i in range(len(s)):
+    s[i]=int(s[i])
+i=0
+while '+' in cal:
+    if cal[i]=='+':
+        s[i]+=s[i+1]
+        s.pop(s.index(s[i+1]))
+        cal.pop(cal.index('+'))
+        i=0
+    else:
+        i+=1
+result=s[0]
+for i in range(1,len(s)):
+    result-=s[i]
+print(result)

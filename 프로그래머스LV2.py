@@ -730,6 +730,37 @@ def solution(bridge_length, weight, truck_weights):
     return answer+1
 print(solution(bridge_length, weight, truck_weights))
 
+
+#문자열 압축
+#문자열이 주어지고 n개단위로 자를때 길이의 최소값을 구하여라
+#aabbabcabc->2a2babcabc / aabb2abc
+s="a"
+def solution(s):
+    length=[]
+    if len(s)==1:
+        return 1
+    for i in range(1,len(s)//2+1):#한번에 탐색범위
+        line=""
+        c=0
+        temp=s[0:i]
+        for j in range(0,len(s),i):#문자열 
+            if temp==s[j:j+i]:
+                c+=1
+            else:
+                if c==1:
+                    line+=temp
+                    temp=s[j:j+i]
+                else:
+                    line=line+str(c)+temp
+                    temp=s[j:j+i]
+                c=1
+        if c==1:
+            line+=temp
+        else:
+            line=line+str(c)+temp
+        length.append(len(line))
+    return min(length)
+print(solution(s))
 #-----------------------------------------------------LV3
 
 # I 숫자 -> 큐에 숫자를 삽입함
