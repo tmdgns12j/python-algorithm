@@ -142,7 +142,6 @@ def solution(n):
     return answer
 print(solution(n))
 
-
 #LV2
 #N개의 최소공배수
 arr=[2,6,8,14]
