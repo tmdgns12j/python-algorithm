@@ -194,7 +194,7 @@ for time in arr:
         start=time[1]
         count+=1
 print(count)
-
+  
 
 #백준 1541 잃어버린 괄호
 #식이 주어진다 숫자는 0으로 시작할수있음
