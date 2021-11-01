@@ -225,3 +225,26 @@ result=s[0]
 for i in range(1,len(s)):
     result-=s[i]
 print(result)
+
+
+
+#13305 주유소
+#각 도시에서의 기름가격과
+#각 도시사이의 거리가 주어진다
+#이때 기름값을 최소로하여라
+# 4 (도시 수)
+# 2 3 1
+# 5 2 4 1           ->18
+n=int(input())
+length=list(map(int,input().split()))
+price=list(map(int,input().split()))
+
+sum=0
+temp=price[0]
+for i in range(n-1):
+    if price[i]>temp:
+        sum=sum+temp*length[i]
+    else:
+        temp=price[i]
+        sum=sum+temp*length[i]
+print(sum)
