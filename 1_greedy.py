@@ -248,3 +248,31 @@ for i in range(n-1):
         temp=price[i]
         sum=sum+temp*length[i]
 print(sum)
+
+
+# 1339 단어수학 ord()아스키코드
+# 자릿수마다 알파벳이 주어질때 곱들의 최대값을 구하여라
+# 2
+# GCF
+# ACDEB     99437
+n=int(input())
+alpha=[0]*26 #A~Z
+arr=[]
+for i in range(n): #알파벳 입력
+    arr.append(input())
+
+for i in range(n):
+    c=0
+    for j in arr[i][::-1]:#뒤에서부터
+        alpha[ord(j)-65]+=10**c#자리수 구해줘서 더해줌
+        c+=1
+alpha.sort(reverse=True)
+
+sum=0
+c=9
+for i in range(26):
+    if alpha[i]==0:
+        break
+    sum+=(alpha[i]*c)
+    c-=1
+print(sum)

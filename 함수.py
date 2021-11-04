@@ -225,3 +225,10 @@ def solution(numbers):
                 break
     return answer
 print(solution(numbers))
+
+
+#ord()
+#해당 문자의 아스키코드 출력
+a='S'
+print(ord(a))
+#83
