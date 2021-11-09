@@ -1,20 +1,21 @@
-s="aaabbaaa"
-def solution(s):
-    count=[]
-    c=1
-    temp=0
-    for i in range(1,len(s)):
-        if s[i-1]==s[i]:
-            c+=1
+from collections import deque
+n=int(input())
+for i in range(n):
+    command=input()
+    command=command.replace('RR','')
+    c=int(input())
+    arr=input()[1:-1].split(',')
+    queue=deque(arr)
+    if c==0:
+        arr=[]
+    for j in command:
+        if j=='R':
+            arr=arr[::-1]
         else:
-            count.append(c)
-            c=1
-        if i==len(s)-1:
-            count.append(c)
-    if s[0]==s[-1]:
-        temp=count[0]+count[-1]
-        count.pop()
-        count[0]=temp
-    count.sort()
-    return count
-print(solution(s))
+            if len(arr)==0:
+                print("error")
+                break
+            else:
+                arr.pop(0)
+    else:
+        print('['+','.join(arr)+']')
