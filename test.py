@@ -1,3 +1,4 @@
+#백준
 from collections import deque
 n=int(input())
 for i in range(n):
