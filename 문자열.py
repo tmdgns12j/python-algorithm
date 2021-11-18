@@ -40,3 +40,28 @@ if c==1:
     print(temp.upper())
 else:
     print("?")
+
+
+#백준 9012
+#괄호가 주어질때 맞는 괄호인지 출력
+c=int(input())
+for j in range(c):
+    s=input()
+    left=0
+    right=0
+    l=len(s)
+    for i in range(l):
+        if s[i]=='(':
+            left+=1
+        else:
+            right+=1
+        if left<right:
+            print("NO")
+            break
+        if i==l-1:
+            if left==right:
+                print("YES")
+                break
+            else:
+                print("NO")
+                break
